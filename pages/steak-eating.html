@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Steak Eating Game</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+    }
+
+    #gameCanvas {
+      border: 1px solid #000;
+    }
+
+    #gameContainer {
+      position: relative;
+    }
+
+    #gameOverScreen {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      font-size: 24px;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+	}
+	
+	#toggleMusicButton {
+	  font-size: 16px;
+	  padding: 10px;
+	  background-color: #ccc;
+	  border: none;
+	  cursor: pointer;
+	}
+
+	#toggleMusicButton:hover {
+	  background-color: #ddd;
+	}
+  </style>
+</head>
+<body>
+<div>
+  <div>
+  <h1> Steak Eating Game (alpha)</h1>
+  <p>Created by BlueEighthNote</p>
+  <p>Based on the <a href="https://www.youtube.com/watch?v=cSps1VoB5sI" target="_blank">Valentine's Lanzhu video</a> posted on Feb 14, 2024</p>
+  <br/>
+  </div>
+  <div id="gameContainer">
+    <canvas id="gameCanvas" width="600" height="400"></canvas>
+
+    <div id="gameOverScreen">
+      <h2>Game Over</h2>
+      <p>Your Score: <span id="finalScore">0</span></p>
+      <p>Top Score: <span id="topScore">0</span></p>
+      <button id="playAgainButton">Play Again</button>
+    </div>
+  </div>
+  <div>
+	<audio id="bgm" src="Banana_moepi_remix.mp3" loop></audio>
+    <button id="toggleMusicButton">Toggle Music</button>
+	<select id="musicSelector">
+	  <option value="Banana_moepi_remix.mp3">Music Track 1: Shioriko turns into a banana</option>
+	  <option value="Printemps_unbalanced_love_Blue_8-bit.wav">Music Track 2: UNBALANCED LOVE 8-bit</option>
+	  <option value="Emma_Eurobeat.wav">Music Track 3: Emma Eurobeat (LOUD warning)</option>
+	  <option value="rikcroll_2016-2.mp3">Music Track 4: Rick Astley Test File</option>
+	</select>
+  </div>
+  <div>
+    <p> Music sources: <a href="https://youtu.be/KzztFQNCXdo?si=V8jzuMSIDxKEIV8v" target="_blank">(1)Shioriko</a>, 
+	                  <a href="https://youtu.be/dlPA5crI60U?si=dgn8EaoONWctt_OM" target="_blank">(2)Printemps</a>, 
+	                  <a href="https://youtu.be/aCts48Rig44?si=E7KVr_Cafx1l1u7R" target="_blank">(3)Emma Eurobeat</a>
+	                  (4)?</p>
+  </div>
+</div>
+<script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+
+    const steakWidth = 100;
+    const steakHeight = 20;
+    const meterWidth = 400;
+    const meterHeight = 20;
+    const steakCount = 5; // Number of steaks
+
+    let isEating = false;
+    let digestionCooldown = 0;
+    let digestionMeter = 0;
+    let targetPosition = 0;
+    let releasePosition = 0;
+    let score = 0;
+    let topScore = 0;
+
+    let currentSteakIndex = 0; // Index of the current steak
+    let steakPositions = []; // Array to store positions of steaks
+
+    // Initialize steak positions
+    for (let i = 0; i < steakCount; i++) {
+      steakPositions.push({
+        x: (canvas.width - steakWidth) / 2,
+        y: (canvas.height - steakHeight) / 2 + i * (steakHeight + 10) - 100
+      });
+    }
+
+    // Meter position
+    const meterX = (canvas.width - meterWidth) / 2;
+    const meterY = canvas.height - 50;
+	
+	// Game over screen
+    const gameOverScreen = document.getElementById('gameOverScreen');
+    const finalScoreElement = document.getElementById('finalScore');
+    const topScoreElement = document.getElementById('topScore');
+
+    // Draw steak
+    function drawSteak() {
+      for (let i = currentSteakIndex; i < steakCount; i++) {
+        const steak = steakPositions[i];
+        ctx.fillStyle = '#ff6347';
+        ctx.fillRect(steak.x, steak.y, steakWidth, steakHeight);
+      }
+    }
+
+    // Draw digestion meter
+    function drawDigestionMeter() {
+      ctx.fillStyle = '#ff0000';
+      ctx.fillRect(meterX, meterY, meterWidth * (1 - digestionCooldown), meterHeight);
+    }
+
+// Draw timing meter
+    function drawTimingMeter() {
+      ctx.fillStyle = '#0000ff';
+      ctx.fillRect(meterX, meterY - 30, meterWidth * (1 - releasePosition / 63), meterHeight);
+	  
+	  // Draw highlighted tolerance range
+	  const tolerance = 5; // Adjust tolerance as needed
+	  const toleranceWidth = meterWidth * (tolerance / 63);
+	  const toleranceCenter = meterWidth * (1 - targetPosition / 63);
+	  const toleranceX = meterX + toleranceCenter - toleranceWidth / 2;
+	  ctx.fillStyle = 'rgba(255, 255, 0, 0.8)';
+	  ctx.fillRect(toleranceX, meterY - 30, toleranceWidth, meterHeight);
+    }
+	
+    // Draw score
+    function drawScore() {
+      ctx.fillStyle = '#000';
+      ctx.font = '20px Arial';
+      ctx.fillText('Score: ' + score, 10, 30);
+    }
+
+    // Main draw function
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawSteak();
+      drawDigestionMeter();
+      drawTimingMeter();
+      drawScore();
+    }
+
+	function cooldownRestoration(digestionCooldown) {
+	  // Define the parameters of the quadratic function
+	  const a = 2.22;
+	  const b = -0.11;
+	  const c = 0.186;
+
+	  // Calculate the restoration rate based on the quadratic function
+	  // Adjust the parameters as needed to fine-tune the behavior
+	  const restorationRate = a * digestionCooldown ** 2 + b * digestionCooldown + c;
+
+	  return restorationRate;
+	}
+
+	// Update function
+	function update() {
+	  if (isEating) {
+		digestionCooldown += 0.005;
+		digestionCooldown = Math.min(digestionCooldown, 1);
+
+		if (digestionCooldown >= 1) {
+		  digestionCooldown = 0;
+		  isEating = false;
+		  gameOver();
+		}
+
+		// Move timing meter
+		if (releasePosition < 63) {
+		  releasePosition += 1;
+		}
+	  } else {
+		// Calculate the restoration rate using the quadratic function
+		const restorationRate = cooldownRestoration(digestionCooldown);
+		digestionCooldown -= restorationRate * 0.002;
+		digestionCooldown = Math.max(digestionCooldown, 0);
+	  }
+	}
+
+    // Check if release is within target position
+    function checkRelease() {
+      const tolerance = 5; // Adjust tolerance as needed
+      const lowerBound = targetPosition - tolerance;
+      const upperBound = targetPosition + tolerance;
+      if (releasePosition >= lowerBound && releasePosition <= upperBound) {
+        score++;
+        currentSteakIndex++; // Move to the next steak
+        if (currentSteakIndex >= steakCount) {
+          currentSteakIndex = 0; // Reset to the first steak if all steaks are eaten
+        }
+        // Apply gravity effect to remaining steaks
+        for (let i = currentSteakIndex; i < steakCount; i++) {
+          steakPositions[i].y += steakHeight + 10;
+        }
+      }
+	  else {
+	      digestionCooldown += 0.05; // additional penalty
+	  }
+    }
+
+    // Check if release is within target position
+    function checkRelease() {
+      const tolerance = 5; // Adjust tolerance as needed
+      const lowerBound = targetPosition - tolerance;
+      const upperBound = targetPosition + tolerance;
+      if (releasePosition >= lowerBound && releasePosition <= upperBound) {
+        score++;
+        currentSteakIndex++; // Move to the next steak
+		
+	    // digestion meter restored slightly
+	    digestionCooldown -= 0.07;
+        if (currentSteakIndex >= steakCount) {
+          currentSteakIndex = 0; // Reset to the first steak if all steaks are eaten
+        }
+      }
+    }
+
+    // Game over function
+    function gameOver() {
+      if (score > topScore) {
+        topScore = score;
+        topScoreElement.textContent = topScore;
+      }
+      finalScoreElement.textContent = score;
+      gameOverScreen.style.display = 'block';
+    }
+
+    // Reset game
+    function resetGame() {
+      score = 0;
+      currentSteakIndex = 0;
+      gameOverScreen.style.display = 'none';
+    }
+
+    // Game loop
+    function gameLoop() {
+      update();
+      draw();
+      requestAnimationFrame(gameLoop);
+    }
+
+    gameLoop();
+
+    // Mouse events
+    canvas.addEventListener('mousedown', () => {
+      isEating = true;
+	  
+	  // costing the eating meter
+	  digestionCooldown += 0.1;
+	  
+      targetPosition = Math.floor(Math.random() * (52 - 20 + 1)) + 20; // Random position between 20 and 52
+      releasePosition = 0;
+    });
+
+    canvas.addEventListener('mouseup', () => {
+      isEating = false;
+      checkRelease();
+    });
+
+    // Play again button event
+    playAgainButton.addEventListener('click', resetGame);
+	
+	// BGM
+	const bgm = document.getElementById('bgm');
+	const toggleMusicButton = document.getElementById('toggleMusicButton');
+
+	// Add event listener to the toggle music button
+	toggleMusicButton.addEventListener('click', () => {
+	  // Toggle the music playback
+	  if (bgm.paused) {
+		// If music is paused, play it
+		bgm.play();
+		toggleMusicButton.textContent = 'Pause Music';
+	  } else {
+		// If music is playing, pause it
+		bgm.pause();
+		toggleMusicButton.textContent = 'Play Music';
+	  }
+	});
+	
+	// Get the audio element and the music selector dropdown
+	const musicSelector = document.getElementById('musicSelector');
+
+	// Add event listener to the music selector dropdown
+	musicSelector.addEventListener('change', () => {
+	  // Get the selected music track
+	  const selectedMusic = musicSelector.value;
+	  
+	  // Update the background music source
+	  bgm.src = selectedMusic;
+
+	  // change text
+	  toggleMusicButton.textContent = 'Play Music';
+	  
+	  // Play the updated background music if it's not paused
+	  if (!bgm.paused) {
+		bgm.pause();
+	  }
+});
+  </script>
+	
+</body>
+</html>
