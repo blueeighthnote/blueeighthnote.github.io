@@ -113,7 +113,7 @@ function checkAnswer(selectedOption, type_to_ask, correctAnswer) {
     }
     correctAnswers++;
   } else if (nicoBustSizeCase && selectedOption === 71) {  
-    alert('You found the true correct answer. Don\'t tell anyone besides Nico-chan, okay? Nico Nico Nii!');
+    alert('You found the true correct answer. Let\'s keep it a secret between us, okay? Nico Nico Nii!');
     correctAnswers++;
   } else {
     alert(`Incorrect! The correct answer is ${correctAnswer}.`);
@@ -128,9 +128,10 @@ function moveToNextQuestion(){
     displayQuestion();
   } else {
     alert(`Quiz completed! You got ${correctAnswers} out of ${idols.length} questions correct.`);
-    // Optionally, reset quiz or redirect to another page
+    // reset quiz
     currentQuestionIndex = 0;
     correctAnswers = 0;
+    shuffle(idols);
     displayQuestion();
   }
 }
