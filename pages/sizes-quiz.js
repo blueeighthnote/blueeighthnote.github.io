@@ -14,11 +14,11 @@ const idols = [
   new Idol('Honoka Kosaka', 157, 78, 58, 82),
   new Idol('Kotori Minami', 159, 80, 58, 80),
   new Idol('Umi Sonoda', 159, 76, 58, 80),
-  new Idol('Rin Hoshizora', 159, 75, 59, 80),
+  new Idol('Rin Hoshizora', 155, 75, 59, 80),
   new Idol('Maki Nishikino', 161, 78, 56, 83),
   new Idol('Hanayo Koizumi', 156, 82, 60, 83),
-  new Idol('Nico Yazawa', 159, 74, 57, 79),
-  new Idol('Eli Ayase', 159, 88, 60, 84),
+  new Idol('Nico Yazawa', 154, 74, 57, 79),
+  new Idol('Eli Ayase', 162, 88, 60, 84),
   new Idol('Nozomi Tojo', 159, 90, 60, 82)
   // Add more idols as needed
 ];
@@ -41,6 +41,7 @@ const optionsElement = document.getElementById('options');
 const nextButton = document.getElementById('nextButton');
 
 let currentQuestionIndex = 0;
+let correctAnswers = 0;
 
 // Display current question and options
 function displayQuestion() {
@@ -110,26 +111,34 @@ function checkAnswer(selectedOption, type_to_ask, correctAnswer) {
     else {
       alert('Correct!');
     }
+    correctAnswers++;
   } else if (nicoBustSizeCase && selectedOption === 71) {  
     alert('You found the true correct answer. Don\'t tell anyone besides Nico-chan, okay? Nico Nico Nii!');
+    correctAnswers++;
   } else {
     alert(`Incorrect! The correct answer is ${correctAnswer}.`);
   }
+  moveToNextQuestion();
+}
 
+function moveToNextQuestion(){
   // Move to the next question
   currentQuestionIndex++;
   if (currentQuestionIndex < idols.length) {
     displayQuestion();
   } else {
-    alert('Quiz completed!');
+    alert(`Quiz completed! You got ${correctAnswers} out of ${idols.length} questions correct.`);
     // Optionally, reset quiz or redirect to another page
+    currentQuestionIndex = 0;
+    correctAnswers = 0;
+    displayQuestion();
   }
 }
 
 // Event listener for the next button
 nextButton.addEventListener('click', () => {
   // Display next question
-  displayQuestion();
+  moveToNextQuestion();
 });
 
 
