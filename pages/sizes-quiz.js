@@ -1,25 +1,56 @@
 // Define the Idol class
 class Idol {
-  constructor(name, height, bustSize, waistSize, hipSize) {
+  constructor(name, height, bustSize, waistSize, hipSize, group) {
     this.name = name;
     this.height = height;
     this.bustSize = bustSize;
     this.waistSize = waistSize;
     this.hipSize = hipSize;
+    this.group = group;
   }
 }
 
 // Create instances of Idol
 const idols = [
-  new Idol('Honoka Kosaka', 157, 78, 58, 82),
-  new Idol('Kotori Minami', 159, 80, 58, 80),
-  new Idol('Umi Sonoda', 159, 76, 58, 80),
-  new Idol('Rin Hoshizora', 155, 75, 59, 80),
-  new Idol('Maki Nishikino', 161, 78, 56, 83),
-  new Idol('Hanayo Koizumi', 156, 82, 60, 83),
-  new Idol('Nico Yazawa', 154, 74, 57, 79),
-  new Idol('Eli Ayase', 162, 88, 60, 84),
-  new Idol('Nozomi Tojo', 159, 90, 60, 82)
+  new Idol('Honoka Kosaka',  157, 78, 58, 82, 'group1'),
+  new Idol('Kotori Minami',  159, 80, 58, 80, 'group1'),
+  new Idol('Umi Sonoda',     159, 76, 58, 80, 'group1'),
+  new Idol('Rin Hoshizora',  155, 75, 59, 80, 'group1'),
+  new Idol('Maki Nishikino', 161, 78, 56, 83, 'group1'),
+  new Idol('Hanayo Koizumi', 156, 82, 60, 83, 'group1'),
+  new Idol('Nico Yazawa',    154, 74, 57, 79, 'group1'),
+  new Idol('Eli Ayase',      162, 88, 60, 84, 'group1'),
+  new Idol('Nozomi Tojo',    159, 90, 60, 82, 'group1'),
+
+  new Idol('Chika Takami',      157, 82, 59, 83, 'group2'),
+  new Idol('Riko Sakurauchi',   160, 80, 58, 82, 'group2'),
+  new Idol('Kanan Matsuura',    162, 83, 58, 84, 'group2'),
+  new Idol('Dia Kurosawa',      162, 80, 57, 80, 'group2'),
+  new Idol('You Watanabe',      157, 82, 57, 81, 'group2'),
+  new Idol('Yoshiko Tsushima',  156, 79, 58, 80, 'group2'),
+  new Idol('Hanamaru Kunikida', 152, 83, 57, 83, 'group2'),
+  new Idol('Mari Ohara',        163, 87, 60, 84, 'group2'),
+  new Idol('Ruby Kurosawa',     154, 76, 56, 79, 'group2'),
+
+  new Idol('Sarah Kazuno', 162, 85, 59, 84, 'ss'),
+  new Idol('Leah Kazuno',  153, 79, 56, 81, 'ss'),
+
+  new Idol('Ayumu Uehara',   159, 82, 58, 84, 'group3'),
+  new Idol('Kasumi Nakasu',  155, 76, 55, 79, 'group3'),
+  new Idol('Shizuku Osaka',  157, 80, 58, 83, 'group3'),
+  new Idol('Karin Asaka',    167, 88, 57, 89, 'group3'),
+
+  new Idol('Ai Miyashita',   163, 84, 53, 86, 'group3'),
+  new Idol('Kanata Konoe',   158, 85, 60, 86, 'group3'),
+
+  new Idol('Setsuna Yuki',   154, 83, 56, 81, 'group3'),
+  new Idol('Emma Verde',     166, 92, 61, 88, 'group3'),
+  new Idol('Rina Tennoji',   149, 71, 52, 75, 'group3'),
+
+  new Idol('Shioriko Mifune',160, 79, 56, 78, 'group3'),
+  new Idol('Lanzhu Zhong',   166, 87, 55, 82, 'group3'),
+  new Idol('Mia Taylor',     156, 80, 50, 80, 'group3'),
+
   // Add more idols as needed
 ];
 
@@ -39,13 +70,29 @@ shuffle(idols);
 const questionElement = document.getElementById('question');
 const optionsElement = document.getElementById('options');
 const nextButton = document.getElementById('nextButton');
+const resultElement = document.getElementById('result');
+const groupSelect = document.getElementById('groupSelect');
 
 let currentQuestionIndex = 0;
 let correctAnswers = 0;
+let currentGroup = 'all';
+
+// Function to filter idols by group
+function filterIdolsByGroup(group) {
+  if (group === 'all') {
+    return idols;
+  } else if (group === 'group2ss') {
+    console.log(idols.filter(idol => idol.group === 'group2' || idol.group === 'ss'));
+    return idols.filter(idol => idol.group === 'group2' || idol.group === 'ss');
+  } else {
+    return idols.filter(idol => idol.group === group);
+  }
+}
 
 // Display current question and options
 function displayQuestion() {
-  const currentIdol = idols[currentQuestionIndex];
+  const filteredIdols = filterIdolsByGroup(currentGroup);
+  const currentIdol = filteredIdols[currentQuestionIndex];
 
   const type_to_ask = Math.floor(Math.random() * 4);  // height, B, W, H
   let size_string = "";
@@ -99,8 +146,9 @@ function displayQuestion() {
 
 // Check the selected answer
 function checkAnswer(selectedOption, type_to_ask, correctAnswer) {
-  const currentIdol = idols[currentQuestionIndex];
-  
+  const filteredIdols = filterIdolsByGroup(currentGroup);
+  const currentIdol = filteredIdols[currentQuestionIndex];
+
   // Special case for Nico
   const nicoBustSizeCase = correctAnswer === 74 && type_to_ask === 1;
 
@@ -118,22 +166,37 @@ function checkAnswer(selectedOption, type_to_ask, correctAnswer) {
   } else {
     alert(`Incorrect! The correct answer is ${correctAnswer}.`);
   }
+
   moveToNextQuestion();
 }
 
 function moveToNextQuestion(){
   // Move to the next question
   currentQuestionIndex++;
-  if (currentQuestionIndex < idols.length) {
+  if (currentQuestionIndex < filterIdolsByGroup(currentGroup).length) {
     displayQuestion();
   } else {
-    alert(`Quiz completed! You got ${correctAnswers} out of ${idols.length} questions correct.`);
-    // reset quiz
-    currentQuestionIndex = 0;
-    correctAnswers = 0;
-    shuffle(idols);
-    displayQuestion();
+    showResult();
   }
+}
+
+// Show quiz results
+function showResult() {
+  resultElement.textContent = `Quiz completed! You got ${correctAnswers} out of ${filterIdolsByGroup(currentGroup).length} questions correct.`;
+  nextButton.textContent = 'Start New Quiz';
+  nextButton.addEventListener('click', startNewQuiz);
+}
+
+// Start a new quiz
+function startNewQuiz() {
+  nextButton.textContent = 'PASS';
+
+  correctAnswers = 0; // Reset correctAnswers for next quiz
+  currentQuestionIndex = 0; // Reset currentQuestionIndex for next quiz
+  resultElement.textContent = ''; // Clear previous result
+  nextButton.removeEventListener('click', startNewQuiz);
+  currentGroup = groupSelect.value; // Update current group based on selection
+  displayQuestion();
 }
 
 // Event listener for the next button
@@ -142,7 +205,8 @@ nextButton.addEventListener('click', () => {
   moveToNextQuestion();
 });
 
-
+// Event listener for group selection change
+groupSelect.addEventListener('change', startNewQuiz);
 
 // Display first question when the page loads
 displayQuestion();
