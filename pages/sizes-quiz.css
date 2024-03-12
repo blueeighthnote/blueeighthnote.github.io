@@ -32,6 +32,10 @@
   background-color: #f7b2b2;
 }
 
+.option.premium {
+  background-color: #ffcf40;
+}
+
 #groupSelection{
   font-size: 0.76em;
 }

@@ -158,14 +158,15 @@ function checkAnswer(selectedOption, type_to_ask, correctAnswer) {
 
   // Special case for Nico
   const nicoBustSizeCase = correctAnswer === 74 && type_to_ask === 1;
+  const special1 = nicoBustSizeCase ? "..?!" : "";
 
   // Disable user interaction with options
   options.forEach(option => {
     option.disabled = true;
     if (parseInt(option.textContent) === correctAnswer) {
       option.classList.add('correct');
-    } else if (nicoBustSizeCase && selectedOption === 71) {
-      option.classList.add('correct');
+    } else if (nicoBustSizeCase && parseInt(option.textContent) === 71 && selectedOption != 74) {
+      option.classList.add('premium'); // Nico case, and only display when wrong
     } else {
       option.classList.add('incorrect');
     }
@@ -187,7 +188,7 @@ function checkAnswer(selectedOption, type_to_ask, correctAnswer) {
     correctAnswers++;
   } else {
     // alert(`Incorrect! The correct answer is ${correctAnswer}.`);
-    resultElement2.textContent = `Incorrect! The correct answer is ${correctAnswer}.`;
+    resultElement2.textContent = `Incorrect! The correct answer is ${correctAnswer}.${special1}`;
   }
 
   // Wait for 1 second before moving to the next question
@@ -217,6 +218,7 @@ function showResult() {
 // Start a new quiz
 function startNewQuiz() {
   nextButton.textContent = 'PASS';
+  shuffle(idols);
 
   correctAnswers = 0; // Reset correctAnswers for next quiz
   currentQuestionIndex = 0; // Reset currentQuestionIndex for next quiz
