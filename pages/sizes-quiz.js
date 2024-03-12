@@ -85,7 +85,7 @@ function filterIdolsByGroup(group) {
   } else if (group === 'group2ss') {
     // console.log(idols.filter(idol => idol.group === 'group2' || idol.group === 'ss'));
     return idols.filter(idol => idol.group === 'group2' || idol.group === 'ss');
-  } else if (group.startsWith('Year')){
+  } else if (group === 'Year1' || group === 'Year2' || group === 'Year3'){
     const schoolYear = parseInt(group.slice(-1));
     console.log(schoolYear);
     return idols.filter(idol => idol.schoolYear === schoolYear);
