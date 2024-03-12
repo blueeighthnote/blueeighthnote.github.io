@@ -72,6 +72,7 @@ const questionElement = document.getElementById('question');
 const optionsElement = document.getElementById('options');
 const nextButton = document.getElementById('nextButton');
 const resultElement = document.getElementById('result');
+const resultElement2 = document.getElementById('optionResult');
 const groupSelect = document.getElementById('groupSelect');
 
 let currentQuestionIndex = 0;
@@ -173,20 +174,20 @@ function checkAnswer(selectedOption, type_to_ask, correctAnswer) {
   if (selectedOption === correctAnswer) {
     if (nicoBustSizeCase){
       // alert('Correct......?!');
-      resultElement.textContent = 'Correct......?!';
+      resultElement2.textContent = 'Correct......?!';
     }
     else {
       // alert('Correct!');
-      resultElement.textContent = 'Correct!';
+      resultElement2.textContent = 'Correct!';
     }
     correctAnswers++;
   } else if (nicoBustSizeCase && selectedOption === 71) {  
     // alert('You found the true correct answer. Let\'s keep it a secret between us, okay? Nico Nico Nii!');
-    resultElement.textContent = 'You found the true correct answer. Let\'s keep it a secret between us, okay? Nico Nico Nii!';
+    resultElement2.textContent = 'You found the true correct answer. Let\'s keep it a secret between us, okay? Nico Nico Nii!';
     correctAnswers++;
   } else {
     // alert(`Incorrect! The correct answer is ${correctAnswer}.`);
-    resultElement.textContent = `Incorrect! The correct answer is ${correctAnswer}.`;
+    resultElement2.textContent = `Incorrect! The correct answer is ${correctAnswer}.`;
   }
 
   // Wait for 1 second before moving to the next question
@@ -198,6 +199,7 @@ function moveToNextQuestion(){
   // Move to the next question
   currentQuestionIndex++;
   resultElement.textContent = '';
+  resultElement2.textContent = '';
   if (currentQuestionIndex < filterIdolsByGroup(currentGroup).length) {
     displayQuestion();
   } else {
