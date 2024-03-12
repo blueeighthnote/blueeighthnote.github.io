@@ -153,31 +153,51 @@ function displayQuestion() {
 function checkAnswer(selectedOption, type_to_ask, correctAnswer) {
   const filteredIdols = filterIdolsByGroup(currentGroup);
   const currentIdol = filteredIdols[currentQuestionIndex];
+  const options = optionsElement.querySelectorAll('.option');
 
   // Special case for Nico
   const nicoBustSizeCase = correctAnswer === 74 && type_to_ask === 1;
 
+  // Disable user interaction with options
+  options.forEach(option => {
+    option.disabled = true;
+    if (parseInt(option.textContent) === correctAnswer) {
+      option.classList.add('correct');
+    } else if (nicoBustSizeCase && selectedOption === 71) {
+      option.classList.add('correct');
+    } else {
+      option.classList.add('incorrect');
+    }
+  });
+
   if (selectedOption === correctAnswer) {
     if (nicoBustSizeCase){
-      alert('Correct......?!');
+      // alert('Correct......?!');
+      resultElement.textContent = 'Correct......?!';
     }
     else {
-      alert('Correct!');
+      // alert('Correct!');
+      resultElement.textContent = 'Correct!';
     }
     correctAnswers++;
   } else if (nicoBustSizeCase && selectedOption === 71) {  
-    alert('You found the true correct answer. Let\'s keep it a secret between us, okay? Nico Nico Nii!');
+    // alert('You found the true correct answer. Let\'s keep it a secret between us, okay? Nico Nico Nii!');
+    resultElement.textContent = 'You found the true correct answer. Let\'s keep it a secret between us, okay? Nico Nico Nii!';
     correctAnswers++;
   } else {
-    alert(`Incorrect! The correct answer is ${correctAnswer}.`);
+    // alert(`Incorrect! The correct answer is ${correctAnswer}.`);
+    resultElement.textContent = `Incorrect! The correct answer is ${correctAnswer}.`;
   }
 
-  moveToNextQuestion();
+  // Wait for 1 second before moving to the next question
+  setTimeout(moveToNextQuestion, 1000);
+  
 }
 
 function moveToNextQuestion(){
   // Move to the next question
   currentQuestionIndex++;
+  resultElement.textContent = '';
   if (currentQuestionIndex < filterIdolsByGroup(currentGroup).length) {
     displayQuestion();
   } else {
