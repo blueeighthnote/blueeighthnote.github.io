@@ -2,6 +2,7 @@
   max-width: 600px;
   margin: 0 auto;
   text-align: center;
+  font-size: 1.05em;
 }
 
 #question {
@@ -15,8 +16,17 @@
 }
 
 .option {
+  font-size: 1.25em;
   margin: 5px;
   padding: 10px 20px;
   background-color: #f0f0f0;
   cursor: pointer;
 }
+
+#groupSelection{
+  font-size: 0.76em;
+}
+
+<!--#nextButton{
+  font-size: 1.05em;
+}-->

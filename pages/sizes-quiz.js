@@ -1,55 +1,56 @@
 // Define the Idol class
 class Idol {
-  constructor(name, height, bustSize, waistSize, hipSize, group) {
+  constructor(name, height, bustSize, waistSize, hipSize, group, schoolYear) {
     this.name = name;
     this.height = height;
     this.bustSize = bustSize;
     this.waistSize = waistSize;
     this.hipSize = hipSize;
     this.group = group;
+    this.schoolYear = schoolYear;
   }
 }
 
 // Create instances of Idol
 const idols = [
-  new Idol('Honoka Kosaka',  157, 78, 58, 82, 'group1'),
-  new Idol('Kotori Minami',  159, 80, 58, 80, 'group1'),
-  new Idol('Umi Sonoda',     159, 76, 58, 80, 'group1'),
-  new Idol('Rin Hoshizora',  155, 75, 59, 80, 'group1'),
-  new Idol('Maki Nishikino', 161, 78, 56, 83, 'group1'),
-  new Idol('Hanayo Koizumi', 156, 82, 60, 83, 'group1'),
-  new Idol('Nico Yazawa',    154, 74, 57, 79, 'group1'),
-  new Idol('Eli Ayase',      162, 88, 60, 84, 'group1'),
-  new Idol('Nozomi Tojo',    159, 90, 60, 82, 'group1'),
+  new Idol('Honoka Kosaka',  157, 78, 58, 82, 'group1', 2),
+  new Idol('Kotori Minami',  159, 80, 58, 80, 'group1', 2),
+  new Idol('Umi Sonoda',     159, 76, 58, 80, 'group1', 2),
+  new Idol('Rin Hoshizora',  155, 75, 59, 80, 'group1', 1),
+  new Idol('Maki Nishikino', 161, 78, 56, 83, 'group1', 1),
+  new Idol('Hanayo Koizumi', 156, 82, 60, 83, 'group1', 1),
+  new Idol('Nico Yazawa',    154, 74, 57, 79, 'group1', 3),
+  new Idol('Eli Ayase',      162, 88, 60, 84, 'group1', 3),
+  new Idol('Nozomi Tojo',    159, 90, 60, 82, 'group1', 3),
 
-  new Idol('Chika Takami',      157, 82, 59, 83, 'group2'),
-  new Idol('Riko Sakurauchi',   160, 80, 58, 82, 'group2'),
-  new Idol('Kanan Matsuura',    162, 83, 58, 84, 'group2'),
-  new Idol('Dia Kurosawa',      162, 80, 57, 80, 'group2'),
-  new Idol('You Watanabe',      157, 82, 57, 81, 'group2'),
-  new Idol('Yoshiko Tsushima',  156, 79, 58, 80, 'group2'),
-  new Idol('Hanamaru Kunikida', 152, 83, 57, 83, 'group2'),
-  new Idol('Mari Ohara',        163, 87, 60, 84, 'group2'),
-  new Idol('Ruby Kurosawa',     154, 76, 56, 79, 'group2'),
+  new Idol('Chika Takami',      157, 82, 59, 83, 'group2', 2),
+  new Idol('Riko Sakurauchi',   160, 80, 58, 82, 'group2', 2),
+  new Idol('Kanan Matsuura',    162, 83, 58, 84, 'group2', 3),
+  new Idol('Dia Kurosawa',      162, 80, 57, 80, 'group2', 3),
+  new Idol('You Watanabe',      157, 82, 57, 81, 'group2', 2),
+  new Idol('Yoshiko Tsushima',  156, 79, 58, 80, 'group2', 1),
+  new Idol('Hanamaru Kunikida', 152, 83, 57, 83, 'group2', 1),
+  new Idol('Mari Ohara',        163, 87, 60, 84, 'group2', 3),
+  new Idol('Ruby Kurosawa',     154, 76, 56, 79, 'group2', 1),
 
-  new Idol('Sarah Kazuno', 162, 85, 59, 84, 'ss'),
-  new Idol('Leah Kazuno',  153, 79, 56, 81, 'ss'),
+  new Idol('Sarah Kazuno', 162, 85, 59, 84, 'ss', 3),
+  new Idol('Leah Kazuno',  153, 79, 56, 81, 'ss', 1),
 
-  new Idol('Ayumu Uehara',   159, 82, 58, 84, 'group3'),
-  new Idol('Kasumi Nakasu',  155, 76, 55, 79, 'group3'),
-  new Idol('Shizuku Osaka',  157, 80, 58, 83, 'group3'),
-  new Idol('Karin Asaka',    167, 88, 57, 89, 'group3'),
+  new Idol('Ayumu Uehara',   159, 82, 58, 84, 'group3', 2),
+  new Idol('Kasumi Nakasu',  155, 76, 55, 79, 'group3', 1),
+  new Idol('Shizuku Osaka',  157, 80, 58, 83, 'group3', 1),
+  new Idol('Karin Asaka',    167, 88, 57, 89, 'group3', 3),
 
-  new Idol('Ai Miyashita',   163, 84, 53, 86, 'group3'),
-  new Idol('Kanata Konoe',   158, 85, 60, 86, 'group3'),
+  new Idol('Ai Miyashita',   163, 84, 53, 86, 'group3', 2),
+  new Idol('Kanata Konoe',   158, 85, 60, 86, 'group3', 3),
 
-  new Idol('Setsuna Yuki',   154, 83, 56, 81, 'group3'),
-  new Idol('Emma Verde',     166, 92, 61, 88, 'group3'),
-  new Idol('Rina Tennoji',   149, 71, 52, 75, 'group3'),
+  new Idol('Setsuna Yuki',   154, 83, 56, 81, 'group3', 2),
+  new Idol('Emma Verde',     166, 92, 61, 88, 'group3', 3),
+  new Idol('Rina Tennoji',   149, 71, 52, 75, 'group3', 1),
 
-  new Idol('Shioriko Mifune',160, 79, 56, 78, 'group3'),
-  new Idol('Lanzhu Zhong',   166, 87, 55, 82, 'group3'),
-  new Idol('Mia Taylor',     156, 80, 50, 80, 'group3'),
+  new Idol('Shioriko Mifune',160, 79, 56, 78, 'group3', 1),
+  new Idol('Lanzhu Zhong',   166, 87, 55, 82, 'group3', 2),
+  new Idol('Mia Taylor',     156, 80, 50, 80, 'group3', 3),
 
   // Add more idols as needed
 ];
@@ -82,8 +83,12 @@ function filterIdolsByGroup(group) {
   if (group === 'all') {
     return idols;
   } else if (group === 'group2ss') {
-    console.log(idols.filter(idol => idol.group === 'group2' || idol.group === 'ss'));
+    // console.log(idols.filter(idol => idol.group === 'group2' || idol.group === 'ss'));
     return idols.filter(idol => idol.group === 'group2' || idol.group === 'ss');
+  } else if (group.startsWith('Year')){
+    const schoolYear = parseInt(group.slice(-1));
+    console.log(schoolYear);
+    return idols.filter(idol => idol.schoolYear === schoolYear);
   } else {
     return idols.filter(idol => idol.group === group);
   }
