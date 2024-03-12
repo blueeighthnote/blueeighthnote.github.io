@@ -75,6 +75,9 @@ const resultElement = document.getElementById('result');
 const resultElement2 = document.getElementById('optionResult');
 const groupSelect = document.getElementById('groupSelect');
 
+// important globals
+let timeoutId; // for timeout ID events
+
 let currentQuestionIndex = 0;
 let correctAnswers = 0;
 let currentGroup = 'all';
@@ -140,7 +143,7 @@ function displayQuestion() {
   }
 
   // Display options
-  optionsElement.innerHTML = '';
+  optionsElement.innerHTML = ' ';
   options.forEach(option => {
     const optionButton = document.createElement('button');
     optionButton.textContent = option;
@@ -158,7 +161,7 @@ function checkAnswer(selectedOption, type_to_ask, correctAnswer) {
 
   // Special case for Nico
   const nicoBustSizeCase = correctAnswer === 74 && type_to_ask === 1;
-  const special1 = nicoBustSizeCase ? "..?!" : "";
+  const special1 = nicoBustSizeCase ? "..??!" : "";
 
   // Disable user interaction with options
   options.forEach(option => {
@@ -192,15 +195,15 @@ function checkAnswer(selectedOption, type_to_ask, correctAnswer) {
   }
 
   // Wait for 1 second before moving to the next question
-  setTimeout(moveToNextQuestion, 1000);
+  timeoutId = setTimeout(moveToNextQuestion, 1000);
   
 }
 
 function moveToNextQuestion(){
   // Move to the next question
   currentQuestionIndex++;
-  resultElement.textContent = '';
-  resultElement2.textContent = '';
+  resultElement.textContent = ' ';
+  resultElement2.textContent = ' ';
   if (currentQuestionIndex < filterIdolsByGroup(currentGroup).length) {
     displayQuestion();
   } else {
@@ -222,7 +225,9 @@ function startNewQuiz() {
 
   correctAnswers = 0; // Reset correctAnswers for next quiz
   currentQuestionIndex = 0; // Reset currentQuestionIndex for next quiz
-  resultElement.textContent = ''; // Clear previous result
+  clearTimeout(timeoutId); // clear any timeouts unused
+  resultElement.textContent = ' '; // Clear previous result
+  resultElement2.textContent = ' '; // Clear previous result
   nextButton.removeEventListener('click', startNewQuiz);
   currentGroup = groupSelect.value; // Update current group based on selection
   displayQuestion();
