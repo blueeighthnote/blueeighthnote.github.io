@@ -1,7 +1,8 @@
 // Define the Idol class
 class Idol {
-  constructor(name, birthMonth, birthDay, group, isCharacter, isSeiyuu) {
+  constructor(name, name_JP_order, birthMonth, birthDay, group, isCharacter, isSeiyuu) {
     this.name = name;
+	this.name_JP_order = name_JP_order;
     this.birthMonth = birthMonth;
     this.birthDay = birthDay;
     this.group = group;
@@ -44,7 +45,7 @@ async function initializeGame() {
 	// Create objects
     idols.length = 0; // Clear existing data in the global variable
     objects.forEach(object => {
-      idols.push(new Idol(object.name, parseInt(object.birthMonth), parseInt(object.birthDay), object.group, parseInt(object.isCharacter), parseInt(object.isSeiyuu)));
+      idols.push(new Idol(object.name, object.name_JP_order, parseInt(object.birthMonth), parseInt(object.birthDay), object.group, parseInt(object.isCharacter), parseInt(object.isSeiyuu)));
     });
 	console.log(idols);
 	
@@ -59,93 +60,6 @@ async function initializeGame() {
   }
 }
 
-// Create instances of Idol
-/*
-const idols = [
-
-  // new Idol('Test Idol',  1, 24, 'group1', 1, 0),
-  new Idol('Test Seiyuu',  10,  6, 'group3', 0, 1),
-  
-  // all spellings based on official romanized spellings from official website
-  // if you're checking the source code then .... I guess hi?
-  // Don't expect quality code here as you can see I didn't even put these
-  // into a csv file and stuff lol
-  
-  // μ's
-  new Idol('Honoka Kosaka',  8,  3, 'group1', 1, 0),
-  new Idol('Kotori Minami',  9, 12, 'group1', 1, 0),
-  new Idol('Umi Sonoda',     3, 15, 'group1', 1, 0),
-  new Idol('Rin Hoshizora', 11,  1, 'group1', 1, 0),
-  new Idol('Maki Nishikino', 4, 19, 'group1', 1, 0),
-  new Idol('Hanayo Koizumi', 1, 17, 'group1', 1, 0),
-  new Idol('Nico Yazawa',    7, 22, 'group1', 1, 0),
-  new Idol('Eli Ayase',     10, 21, 'group1', 1, 0),
-  new Idol('Nozomi Tojo',    6,  9, 'group1', 1, 0),
-
-  // aqours
-  new Idol('Chika Takami',      8,  1, 'group2', 1, 0),
-  new Idol('Riko Sakurauchi',   9, 19, 'group2', 1, 0),
-  new Idol('Kanan Matsuura',    2, 10, 'group2', 1, 0),
-  new Idol('Dia Kurosawa',      1,  1, 'group2', 1, 0),
-  new Idol('You Watanabe',      4, 17, 'group2', 1, 0),
-  new Idol('Yoshiko Tsushima',  7, 13, 'group2', 1, 0),
-  new Idol('Hanamaru Kunikida', 3,  4, 'group2', 1, 0),
-  new Idol('Mari Ohara',        6, 13, 'group2', 1, 0),
-  new Idol('Ruby Kurosawa',     9, 21, 'group2', 1, 0),
-
-  new Idol('Sarah Kazuno',  5,  4, 'ss', 1, 0),
-  new Idol('Leah Kazuno',  12, 12, 'ss', 1, 0),
-
-  // nijigasaki
-  new Idol('Ayumu Uehara',   3,  1, 'group3', 1, 0),
-  new Idol('Kasumi Nakasu',  1, 23, 'group3', 1, 0),
-  new Idol('Shizuku Osaka',  4,  3, 'group3', 1, 0),
-  new Idol('Karin Asaka',    6, 29, 'group3', 1, 0),
-  
-  new Idol('Ai Miyashita',   5, 30, 'group3', 1, 0),
-  new Idol('Kanata Konoe',  12, 16, 'group3', 1, 0),
-  new Idol('Setsuna Yuki',   8,  8, 'group3', 1, 0),
-  new Idol('Emma Verde',     2,  5, 'group3', 1, 0),
-  
-  new Idol('Rina Tennoji',   11, 13, 'group3', 1, 0),
-  new Idol('Shioriko Mifune',10,  5, 'group3', 1, 0),
-  new Idol('Lanzhu Zhong',    2, 15, 'group3', 1, 0),
-  new Idol('Mia Taylor',     12,  6, 'group3', 1, 0),
-    
-  // liella
-  new Idol('Kanon Shibuya',  5,  1, 'group4', 1, 0),
-  new Idol('KeKe Tang',      7, 17, 'group4', 1, 0),
-  new Idol('Arashi Chisato', 2, 25, 'group4', 1, 0),
-  new Idol('Sumire Heanna',  9, 28, 'group4', 1, 0),
-  new Idol('Ren Hazuki',    11, 24, 'group4', 1, 0),
-
-  new Idol('Kinako Sakurakoji', 4, 10, 'group4', 1, 0),
-  new Idol('Mei Yoneme',       10, 29, 'group4', 1, 0),
-  new Idol('Shiki Wakana',      6, 17, 'group4', 1, 0),
-  new Idol('Natsumi Onitsuka',  8,  7, 'group4', 1, 0),
-  
-  new Idol('Wien Margarete',   1, 20, 'group4', 1, 0),  // going by official spelling and not Margarete Wien yet
-  new Idol('Tomari Onitsuka', 12, 28, 'group4', 1, 0),
-  
-  new Idol('Yuna Hijirisawa',  8, 11, 'sunnypa', 1, 0),
-  new Idol('Mao Hiiragi',     12,  2, 'sunnypa', 1, 0),
-  
-  // hasunosora
-  new Idol('Kaho Hinoshita',   5, 22, 'group5', 1, 0),
-  new Idol('Sayaka Murano',    1, 13, 'group5', 1, 0),
-  new Idol('Kozue Otomune',    6, 15, 'group5', 1, 0),
-  new Idol('Tsuzuri Yugiri',  11, 17, 'group5', 1, 0),
-  new Idol('Rurino Osawa',     8, 31, 'group5', 1, 0),
-  new Idol('Megumi Fujishima',12, 20, 'group5', 1, 0),
-  
-  new Idol('Ginko Momose',     10, 20, 'group5', 1, 0),
-  new Idol('Kosuzu Kachimachi', 2, 28, 'group5', 1, 0),
-  new Idol('Hime Anyoji',       9, 24, 'group5', 1, 0),
-
-  // Add more idols as needed
-];
-*/
-
 // A quick shuffle function
 const shuffle = array => {
   for (let i = array.length - 1; i > 0; i--) {
@@ -156,14 +70,17 @@ const shuffle = array => {
   }
 }
 
-function kindaGaussianRand() {
-  var rand = 0;
-
-  for (var i = 0; i < 6; i += 1) {
-    rand += Math.random();
-  }
-
-  return rand / 6;
+function updateQuestionText(query_string){
+	// this is for after adjusting name display order (EN or JP)
+	// admittedly the writing of this code is not clean
+	let idol_name = 0;
+	if (use_JP_name_order){
+		idol_name = filterIdolsByGroup(currentGroup)[currentQuestionIndex].name_JP_order;
+	} else{
+		idol_name = filterIdolsByGroup(currentGroup)[currentQuestionIndex].name;
+	}
+	let question = `When is ${idol_name}'s ${query_string}?`;
+    questionElement.textContent = question;
 }
 
 const idols = [];
@@ -184,6 +101,7 @@ const resultElement = document.getElementById('result');
 const resultElement2 = document.getElementById('optionResult');
 const groupSelect = document.getElementById('groupSelect');
 const isSeiyuuSelect = document.querySelectorAll('input[name="filterType"]')
+const nameJPOrderSelect = document.getElementById('nameJPorderToggle')
 
 // important globals
 let timeoutId; // for timeout ID events
@@ -191,6 +109,9 @@ let timeoutId; // for timeout ID events
 let currentQuestionIndex = 0;
 let correctAnswers = 0;
 let currentGroup = 'all';
+
+// question display related
+let use_JP_name_order = 0;
 
 // Function to filter idols by group
 function filterIdolsByGroup(group) {
@@ -224,7 +145,7 @@ function filterIdolsByGroup(group) {
 // Display current question and options
 function displayQuestion() {
   const filteredIdols = filterIdolsByGroup(currentGroup);
-  const currentIdol = filteredIdols[currentQuestionIndex];
+  const currentIdol = filteredIdols[currentQuestionIndex];  
 
   const type_to_ask = Math.floor(Math.random() * 1);  // bday
   let size_string = "";
@@ -238,15 +159,13 @@ function displayQuestion() {
       idol_month = currentIdol.birthMonth;
 	  idol_birthday = `${month_str[idol_month]} ${idol_day}`;
   } 
-
-  let question = `When is ${currentIdol.name}'s ${query_string}?`;
-  questionElement.textContent = question;
+  
+  updateQuestionText(query_string);
+  //let question = `When is ${currentIdol.name}'s ${query_string}?`;
+  //questionElement.textContent = question;
 
   // Generate options
   const options = [];
-
-  // TODO: Change the BDay generation options
-//////////
 
   // determine how the intervals differ
   const intervals = [1, 2, 3, 4, 5, 7, 10];
@@ -516,6 +435,10 @@ groupSelect.addEventListener('change', startNewQuiz);
 // Event listener for the radio buttons
 isSeiyuuSelect.forEach(input => {
   input.addEventListener('change', startNewQuiz);
+
 });
+// Event listener for the JP name order toggle
+nameJPOrderSelect.addEventListener('change', updateQuestionText);
+
 
 initializeGame();
