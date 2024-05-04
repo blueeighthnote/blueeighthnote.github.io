@@ -1,0 +1,104 @@
+.container {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 1.05em;
+}
+
+#question {
+  margin-bottom: 20px;
+}
+
+#options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.option {
+  font-size: 1.15em;
+  min-width: 59px;
+  margin: 5px;
+  padding: 7px 5px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+
+.option.correct {
+  background-color: #b2f7b2;
+}
+
+.option.incorrect {
+  background-color: #f7b2b2;
+}
+
+.option.premium {
+  background-color: #ffcf40;
+}
+
+#groupSelection{
+  font-size: 0.76em;
+}
+
+
+/* Just for setting minimum height for body */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 97.5vh;
+}
+
+/* Basic styling for the footer */
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+  margin-top: auto;
+}
+
+.footer-content {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.footer-content p {
+  margin-bottom: 10px;
+}
+
+/* Styling for navigation links */
+.footer-content nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footer-content nav ul li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.footer-content nav ul li:last-child {
+  margin-right: 0;
+}
+
+.footer-content nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-content nav ul li a:hover {
+  color: #ccc;
+}
+
+/* Styling for social links */
+.social-links a {
+  display: inline-block;
+  margin-right: 10px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.social-links a:hover {
+  color: #ccc;
+}
