@@ -440,7 +440,7 @@ isSeiyuuSelect.forEach(input => {
 });
 // Event listener for the JP name order toggle
 nameJPOrderSelect.addEventListener('change', () => {
-	
+	console.log(nameJPOrderSelect.checked);
 	if (nameJPOrderSelect.checked){
 		use_JP_name_order = 1;
 	} else {
