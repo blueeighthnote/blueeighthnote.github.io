@@ -100,8 +100,9 @@ const nextButton = document.getElementById('nextButton');
 const resultElement = document.getElementById('result');
 const resultElement2 = document.getElementById('optionResult');
 const groupSelect = document.getElementById('groupSelect');
-const isSeiyuuSelect = document.querySelectorAll('input[name="filterType"]')
-const nameJPOrderSelect = document.getElementById('nameJPorderToggle')
+const isSeiyuuSelect = document.querySelectorAll('input[name="filterType"]');
+const seiyuuSelected = document.querySelector('input[name="filterType"]:checked');
+const nameJPOrderSelect = document.getElementById('nameJPorderToggle');
 
 // important globals
 let timeoutId; // for timeout ID events
@@ -116,7 +117,7 @@ let use_JP_name_order = 0;
 // Function to filter idols by group
 function filterIdolsByGroup(group) {
   // adding the seiyuu filters and stuff here
-  let filterType = document.querySelector('input[name="filterType"]:checked').value;
+  let filterType = seiyuuSelected.value;
   
   // Filter idols based on the selected filter type
   let filteredIdols;
@@ -438,7 +439,15 @@ isSeiyuuSelect.forEach(input => {
 
 });
 // Event listener for the JP name order toggle
-nameJPOrderSelect.addEventListener('change', updateQuestionText);
+nameJPOrderSelect.addEventListener('change', () => {
+	
+	if (nameJPOrderSelect.checked){
+		use_JP_name_order = 1;
+	} else {
+	    use_JP_name_order = 0;
+	}
+	updateQuestionText("birthday"); // birthday cuz that's the only thing right now lol
+}); 
 
 
 initializeGame();
