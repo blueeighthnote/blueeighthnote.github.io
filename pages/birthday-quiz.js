@@ -10,11 +10,61 @@ class Idol {
   }
 }
 
+// Function to fetch and parse CSV data
+async function fetchData() {
+  try {
+    // Fetch CSV file
+    const response = await fetch('birthdayData.csv');
+    const data = await response.text();
+    
+    // Parse CSV data
+    const rows = data.split('\n');
+    const objects = [];
+    const headers = rows[0].split(','); // Assuming the first row contains headers
+	// console.log(headers);
+    for (let i = 1; i < rows.length-1; i++) {
+      const values = rows[i].split(',');
+	  // console.log(values);
+      const object = {};
+      for (let j = 0; j < headers.length; j++) {
+        object[headers[j].trim()] = values[j].trim();
+      }
+	  // console.log(object);
+      objects.push(object);
+    }
+	return objects;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+}
+
+async function initializeGame() {
+  try {
+    const objects = await fetchData();
+	// Create objects
+    idols.length = 0; // Clear existing data in the global variable
+    objects.forEach(object => {
+      idols.push(new Idol(object.name, parseInt(object.birthMonth), parseInt(object.birthDay), object.group, parseInt(object.isCharacter), parseInt(object.isSeiyuu)));
+    });
+	console.log(idols);
+	
+	// shuffle them
+	shuffle(idols);
+
+	// Display first question when the page loads
+	displayQuestion();
+	
+  } catch (error) {
+	  console.error('Error loading data:', error);
+  }
+}
+
 // Create instances of Idol
+/*
 const idols = [
 
-  // new Idol('Test Idol',  1, 24, 'group1', 1, 0)
-  // /*
+  // new Idol('Test Idol',  1, 24, 'group1', 1, 0),
+  new Idol('Test Seiyuu',  10,  6, 'group3', 0, 1),
   
   // all spellings based on official romanized spellings from official website
   // if you're checking the source code then .... I guess hi?
@@ -91,10 +141,10 @@ const idols = [
   new Idol('Ginko Momose',     10, 20, 'group5', 1, 0),
   new Idol('Kosuzu Kachimachi', 2, 28, 'group5', 1, 0),
   new Idol('Hime Anyoji',       9, 24, 'group5', 1, 0),
-  // /*
 
   // Add more idols as needed
 ];
+*/
 
 // A quick shuffle function
 const shuffle = array => {
@@ -116,7 +166,7 @@ function kindaGaussianRand() {
   return rand / 6;
 }
 
-shuffle(idols);
+const idols = [];
 
 const month_str = ["", "January", "February", "March", "April", "May", "June", 
                      "July", "August", "September", "October", "November", "December"];
@@ -133,6 +183,7 @@ const nextButton = document.getElementById('nextButton');
 const resultElement = document.getElementById('result');
 const resultElement2 = document.getElementById('optionResult');
 const groupSelect = document.getElementById('groupSelect');
+const isSeiyuuSelect = document.querySelectorAll('input[name="filterType"]')
 
 // important globals
 let timeoutId; // for timeout ID events
@@ -143,16 +194,30 @@ let currentGroup = 'all';
 
 // Function to filter idols by group
 function filterIdolsByGroup(group) {
+  // adding the seiyuu filters and stuff here
+  let filterType = document.querySelector('input[name="filterType"]:checked').value;
+  
+  // Filter idols based on the selected filter type
+  let filteredIdols;
+  if (filterType === 'characters') {
+    filteredIdols = idols.filter(idol => !idol.isSeiyuu);
+  } else if (filterType === 'seiyuus') {
+    filteredIdols = idols.filter(idol => idol.isSeiyuu);
+  } else { // Both
+    filteredIdols = idols;
+  }
+  
+  ////// now filter by group
   if (group === 'all') {
-    return idols;
+    return filteredIdols;
   } else if (group === 'group2ss') {
     // console.log(idols.filter(idol => idol.group === 'group2' || idol.group === 'ss'));
-    return idols.filter(idol => idol.group === 'group2' || idol.group === 'ss');
+    return filteredIdols.filter(idol => idol.group === 'group2' || idol.group === 'ss');
   } else if (group === 'group4sunnypa') {
     // console.log(idols.filter(idol => idol.group === 'group2' || idol.group === 'ss'));
-    return idols.filter(idol => idol.group === 'group4' || idol.group === 'sunnypa');
+    return filteredIdols.filter(idol => idol.group === 'group4' || idol.group === 'sunnypa');
   } else {
-    return idols.filter(idol => idol.group === group);
+    return filteredIdols.filter(idol => idol.group === group);
   }
 }
 
@@ -438,6 +503,7 @@ function startNewQuiz() {
   displayQuestion();
 }
 
+
 // Event listener for the next button
 nextButton.addEventListener('click', () => {
   // Display next question
@@ -447,5 +513,9 @@ nextButton.addEventListener('click', () => {
 // Event listener for group selection change
 groupSelect.addEventListener('change', startNewQuiz);
 
-// Display first question when the page loads
-displayQuestion();
+// Event listener for the radio buttons
+isSeiyuuSelect.forEach(input => {
+  input.addEventListener('change', startNewQuiz);
+});
+
+initializeGame();
