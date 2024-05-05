@@ -168,7 +168,7 @@ function displayQuestion() {
   const options = [];
 
   // determine how the intervals differ
-  const intervals = [1, 2, 3, 4, 5, 7, 10];
+  const intervals = [1, 1, 2, 2, 3, 4, 5, 6, 7, 10];
 
   const ask_mode = Math.floor(Math.random() * 2.5) + 0; // high chance 0, lower for 1, 2
   console.log(ask_mode);
@@ -195,7 +195,7 @@ function displayQuestion() {
 	  // overwhelm mode (random)
 	  const overwhelm_chance = 0.05 + correctAnswers * 0.004; // up to 17% for overwhelm mode
 	  if ((Math.random() < overwhelm_chance) && (correctAnswers >= 3) && overwhelmCooldown <= 0){
-		  num_options += 5 + Math.floor(Math.random() * 3)*10;
+		  num_options += 5 + Math.floor(Math.random() * 4)*3; // + 5,8,11,14
 		  overwhelmCooldown = 2;
 	  }
 	  else {
@@ -235,7 +235,7 @@ function displayQuestion() {
       }
       //console.log(options);
   } else if (ask_mode == 1){ // alter BOTH days and months
-      let intervalD = intervals[Math.floor(Math.random() * intervals.length)] + 6;  // 6, 7, 8, 9, 10, 12, 15
+      let intervalD = intervals[Math.floor(Math.random() * intervals.length)] + 6;  // 6, 6, 7, 7, 8, 9, 10, 11, 12, 15
       let num_optionsD = Math.floor(Math.random() * 2) + 2;   // 2 ~ 3 options
       let intervalM = Math.floor(Math.random() * 5) + 1  // 1 ~ 11 months difference
       let num_optionsM = Math.floor(Math.random() * 2) + 2;   // 2 ~ 3 options
@@ -358,38 +358,34 @@ function checkAnswer(selectedOption, type_to_ask, correctAnswer) {
   const options = optionsElement.querySelectorAll('.option');
 
   // Special case for Nico
-  const nicoBustSizeCase = correctAnswer === 74 && type_to_ask === 1;
-  const special1 = nicoBustSizeCase ? "..??!" : "";
+  const kekeOldBirthdayCase = correctAnswer === "July 17" && type_to_ask === 0;
+  const oninatsuOldBirthdayCase = correctAnswer === "August 7" && type_to_ask === 0;
 
   // Disable user interaction with options
   options.forEach(option => {
     option.disabled = true;
     if (option.textContent === correctAnswer) {
       option.classList.add('correct');
-    } else if (nicoBustSizeCase && parseInt(option.textContent) === 71 && selectedOption != 74) {
-      option.classList.add('premium'); // Nico case, and only display when wrong
+    } else if (kekeOldBirthdayCase && option.textContent === "July 7" && selectedOption != "July 17") {
+      option.classList.add('premium'); // KeKe case, only display if wrong
+	} else if (oninatsuOldBirthdayCase && option.textContent === "August 13" && selectedOption != "August 7") {
+      option.classList.add('premium'); // Natsumi case, only display if wrong
     } else {
       option.classList.add('incorrect');
     }
   });
-
+  
   if (selectedOption === correctAnswer) {
-    if (nicoBustSizeCase){
-      // alert('Correct......?!');
-      resultElement2.textContent = 'Correct......?!';
-    }
-    else {
-      // alert('Correct!');
-      resultElement2.textContent = 'Correct!';
-    }
+    resultElement2.textContent = 'Correct!';
     correctAnswers++;
-  } else if (nicoBustSizeCase && selectedOption === 71) {  
-    // alert('You found the true correct answer. Let\'s keep it a secret between us, okay? Nico Nico Nii!');
-    resultElement2.textContent = 'You found the true correct answer. Let\'s keep it a secret between us, okay? Nico Nico Nii!';
+  } else if (kekeOldBirthdayCase && selectedOption === "July 7") {  
+    resultElement2.textContent = 'Looks like you found KeKe\'s original birthday. Nice one!';
+    correctAnswers++;
+  } else if (oninatsuOldBirthdayCase && selectedOption === "August 13") {  
+    resultElement2.textContent = 'You found Natsumi\'s original birthday before it was changed. ONINATSUUUUUUUUU';
     correctAnswers++;
   } else {
-    // alert(`Incorrect! The correct answer is ${correctAnswer}.`);
-    resultElement2.textContent = `Incorrect! The correct answer is ${correctAnswer}.${special1}`;
+    resultElement2.textContent = `Incorrect! The correct answer is ${correctAnswer}.`;
   }
 
   // Wait for 1 second before moving to the next question
