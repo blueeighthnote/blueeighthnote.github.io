@@ -1,7 +1,10 @@
 // Define the Idol class
 class Idol {
-  constructor(name, height, bustSize, waistSize, hipSize, group, schoolYear) {
+  constructor(name, name_JP_order, nickname, firstname, height, bustSize, waistSize, hipSize, group, schoolYear) {
     this.name = name;
+	this.name_JP_order = name_JP_order;
+	this.nickname = nickname;
+	this.firstname = firstname;
     this.height = height;
     this.bustSize = bustSize;
     this.waistSize = waistSize;
@@ -11,49 +14,55 @@ class Idol {
   }
 }
 
-// Create instances of Idol
-const idols = [
-  new Idol('Honoka Kosaka',  157, 78, 58, 82, 'group1', 2),
-  new Idol('Kotori Minami',  159, 80, 58, 80, 'group1', 2),
-  new Idol('Umi Sonoda',     159, 76, 58, 80, 'group1', 2),
-  new Idol('Rin Hoshizora',  155, 75, 59, 80, 'group1', 1),
-  new Idol('Maki Nishikino', 161, 78, 56, 83, 'group1', 1),
-  new Idol('Hanayo Koizumi', 156, 82, 60, 83, 'group1', 1),
-  new Idol('Nico Yazawa',    154, 74, 57, 79, 'group1', 3),
-  new Idol('Eli Ayase',      162, 88, 60, 84, 'group1', 3),
-  new Idol('Nozomi Tojo',    159, 90, 60, 82, 'group1', 3),
+// Function to fetch and parse CSV data
+async function fetchData() {
+  try {
+    // Fetch CSV file
+    const response = await fetch('sizesData.csv');
+    const data = await response.text();
+    
+    // Parse CSV data
+    const rows = data.split('\n');
+    const objects = [];
+    const headers = rows[0].split(','); // Assuming the first row contains headers
+	// console.log(headers);
+    for (let i = 1; i < rows.length-1; i++) {
+      const values = rows[i].split(',');
+	  // console.log(values);
+      const object = {};
+      for (let j = 0; j < headers.length; j++) {
+        object[headers[j].trim()] = values[j].trim();
+      }
+	  // console.log(object);
+      objects.push(object);
+    }
+	return objects;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+}
+async function initializeGame() {
+  try {
+    const objects = await fetchData();
+	// Create objects
+    idols.length = 0; // Clear existing data in the global variable
+    objects.forEach(object => {
+      idols.push(new Idol(object.name, object.name_JP_order, object.nickname, object.first_name, 
+	                      parseInt(object.height), parseInt(object.bustSize), parseInt(object.waistSize), parseInt(object.hipSize), 
+						  object.group, parseInt(object.schoolYear)));
+    });
+	// console.log(idols);
+	
+	// shuffle them
+	shuffle(idols);
 
-  new Idol('Chika Takami',      157, 82, 59, 83, 'group2', 2),
-  new Idol('Riko Sakurauchi',   160, 80, 58, 82, 'group2', 2),
-  new Idol('Kanan Matsuura',    162, 83, 58, 84, 'group2', 3),
-  new Idol('Dia Kurosawa',      162, 80, 57, 80, 'group2', 3),
-  new Idol('You Watanabe',      157, 82, 57, 81, 'group2', 2),
-  new Idol('Yoshiko Tsushima',  156, 79, 58, 80, 'group2', 1),
-  new Idol('Hanamaru Kunikida', 152, 83, 57, 83, 'group2', 1),
-  new Idol('Mari Ohara',        163, 87, 60, 84, 'group2', 3),
-  new Idol('Ruby Kurosawa',     154, 76, 56, 79, 'group2', 1),
-
-  new Idol('Sarah Kazuno', 162, 85, 59, 84, 'ss', 3),
-  new Idol('Leah Kazuno',  153, 79, 56, 81, 'ss', 1),
-
-  new Idol('Ayumu Uehara',   159, 82, 58, 84, 'group3', 2),
-  new Idol('Kasumi Nakasu',  155, 76, 55, 79, 'group3', 1),
-  new Idol('Shizuku Osaka',  157, 80, 58, 83, 'group3', 1),
-  new Idol('Karin Asaka',    167, 88, 57, 89, 'group3', 3),
-
-  new Idol('Ai Miyashita',   163, 84, 53, 86, 'group3', 2),
-  new Idol('Kanata Konoe',   158, 85, 60, 86, 'group3', 3),
-
-  new Idol('Setsuna Yuki',   154, 83, 56, 81, 'group3', 2),
-  new Idol('Emma Verde',     166, 92, 61, 88, 'group3', 3),
-  new Idol('Rina Tennoji',   149, 71, 52, 75, 'group3', 1),
-
-  new Idol('Shioriko Mifune',160, 79, 56, 78, 'group3', 1),
-  new Idol('Lanzhu Zhong',   166, 87, 55, 82, 'group3', 2),
-  new Idol('Mia Taylor',     156, 80, 50, 80, 'group3', 3),
-
-  // Add more idols as needed
-];
+	// Display first question when the page loads
+	displayQuestion();
+	
+  } catch (error) {
+	  console.error('Error loading data:', error);
+  }
+}
 
 // A quick shuffle function
 const shuffle = array => {
@@ -65,7 +74,35 @@ const shuffle = array => {
   }
 }
 
-shuffle(idols);
+function updateQuestionText(query_string){
+	
+	// admittedly the writing of this code is not clean
+	const current_idol = filterIdolsByGroup(currentGroup)[currentQuestionIndex];
+	
+	let question = "";
+	
+	// names display
+	let idol_name = "";
+	if (use_nicknames){
+		idol_name = current_idol.nickname;
+		// possibility of NA due to no nickname - use first name instead
+		if (idol_name === "NA"){
+			idol_name = current_idol.firstname;
+		}
+		// use a different phrasing for nickname cases
+		question = `What is ${idol_name}'s ${size_string}?`;
+		
+    } else if (use_JP_name_order){
+		idol_name = current_idol.name_JP_order;
+		question = `What is the ${size_string} of ${idol_name}?`;
+	} else{
+		idol_name = current_idol.name;
+		question = `What is the ${size_string} of ${idol_name}?`;
+	}
+    questionElement.textContent = question;
+}
+
+const idols = [];
 
 // Get HTML elements
 const questionElement = document.getElementById('question');
@@ -74,6 +111,9 @@ const nextButton = document.getElementById('nextButton');
 const resultElement = document.getElementById('result');
 const resultElement2 = document.getElementById('optionResult');
 const groupSelect = document.getElementById('groupSelect');
+const questionTypeSelect = document.querySelectorAll('input[name="questionType"]');
+const nameJPOrderSelect = document.getElementById('nameJPorderToggle');
+const useNicknamesSelect = document.getElementById('nicknamesToggle');
 
 // important globals
 let timeoutId; // for timeout ID events
@@ -81,6 +121,11 @@ let timeoutId; // for timeout ID events
 let currentQuestionIndex = 0;
 let correctAnswers = 0;
 let currentGroup = 'all';
+
+// question display related
+let size_string = ""
+let use_JP_name_order = 0;
+let use_nicknames = 0;
 
 // Function to filter idols by group
 function filterIdolsByGroup(group) {
@@ -102,11 +147,26 @@ function filterIdolsByGroup(group) {
 function displayQuestion() {
   const filteredIdols = filterIdolsByGroup(currentGroup);
   const currentIdol = filteredIdols[currentQuestionIndex];
-
-  const type_to_ask = Math.floor(Math.random() * 4);  // height, B, W, H
-  let size_string = "";
+  
+  // height, B, W, H
+  let type_to_ask;
+  let questionType = document.querySelector('input[name="questionType"]:checked').value;
+  if (questionType === 'allstats'){
+	  type_to_ask = Math.floor(Math.random() * 4);
+  } else if (questionType === 'height'){
+	  type_to_ask = 0;
+  } else if (questionType === 'threesizes'){
+	  type_to_ask = Math.floor(Math.random() * 3) + 1; // 1, 2, 3
+  } else if (questionType === 'bustsize'){
+	  type_to_ask = 1;
+  } else if (questionType === 'waistsize'){
+	  type_to_ask = 2;
+  } else if (questionType === 'hipsize'){
+	  type_to_ask = 3;
+  }
+  
+  // look-up size 
   let idol_size = 0;
-
   if (type_to_ask == 0){
       size_string = "height";
       idol_size = currentIdol.height;
@@ -120,9 +180,8 @@ function displayQuestion() {
       size_string = "hip size";
       idol_size = currentIdol.hipSize;
   }
-
-  let question = `What is the ${size_string} of ${currentIdol.name}?`;
-  questionElement.textContent = question;
+  
+  updateQuestionText(); 
 
   // Generate options
   const options = [];
@@ -242,5 +301,35 @@ nextButton.addEventListener('click', () => {
 // Event listener for group selection change
 groupSelect.addEventListener('change', startNewQuiz);
 
-// Display first question when the page loads
-displayQuestion();
+// Event listener for the radio buttons
+questionTypeSelect.forEach(input => {
+  input.addEventListener('change', startNewQuiz);
+
+});
+
+// Event listener for the JP name order toggle
+nameJPOrderSelect.addEventListener('change', () => {
+	// console.log(nameJPOrderSelect.checked);
+	if (nameJPOrderSelect.checked){
+		use_JP_name_order = 1;
+	} else {
+	    use_JP_name_order = 0;
+	}
+	updateQuestionText();
+}); 
+
+// Add event listener to the "Use JP name order" checkbox
+useNicknamesSelect.addEventListener('change',function (){
+	// Disable the "Use JP name order" checkbox if the "Use nicknames" checkbox is checked
+	
+	if (useNicknamesSelect.checked){
+		use_nicknames = 1;
+	} else {
+	    use_nicknames = 0;
+	}
+	updateQuestionText();
+	nameJPOrderSelect.disabled = this.checked;
+});
+
+// Everything ready, initialize
+initializeGame();

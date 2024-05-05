@@ -24,6 +24,36 @@
         <option value="Year2">2nd Years only</option>
         <option value="Year3">3rd Years only</option>
       </select>
+	  <br/><br/>
+		<label>Question Types:</label>
+		<div id="filterOptions">
+		  <label>
+			<input type="radio" name="questionType" value="allstats" checked> All Stats
+		  </label>
+		  <label>
+			<input type="radio" name="questionType" value="height"> Height Only
+		  </label>
+		  <label>
+			<input type="radio" name="questionType" value="threesizes"> Three Sizes 
+		  </label>
+		  <label>
+			<input type="radio" name="questionType" value="bustsize"> B
+		  </label>
+		  <label>
+			<input type="radio" name="questionType" value="waistsize"> W
+		  </label>
+		  <label>
+			<input type="radio" name="questionType" value="hipsize"> H
+		  </label>
+		</div>
+		<br/>
+	  	<label>Additional Options:</label>
+		<label>
+		  <input type="checkbox" id="nicknamesToggle"> Use First name / Nickname
+		</label>
+		<label>
+		  <input type="checkbox" id="nameJPorderToggle"> Use Japanese name order
+		</label>
     </div>
     <br/>
     <button id="nextButton">PASS</button>
@@ -36,7 +66,10 @@
 </body>
 <footer>
   <div class="footer-content">
-    <p>Silly game made by BlueEighthNote</p>
+    <p>Silly game made by BlueEighthNote<br/>
+	   <small>(Source: <a href="https://love-live.fandom.com" style="color: #FFFFFF"</a> Love Live Wiki</a>)</small><br/>
+	   <small>Last updated: May 5, 2024</small></p>
+	<p>Related:  <a href="birthday-quiz.html" style="color: #FFFFFF"><i>Love Live! School Idol Birthdays Quiz</i></a></p>
     <nav>
       <ul>
         <li><a href="../index.html">Home</a></li>

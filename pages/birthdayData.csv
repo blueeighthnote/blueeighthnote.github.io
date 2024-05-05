@@ -26,7 +26,7 @@ Asaka,Karin,6,29,group3,1,0,0,Karin Asaka,Asaka Karin,NA,
 Miyashita,Ai,5,30,group3,1,0,0,Ai Miyashita,Miyashita Ai,NA,
 Konoe,Kanata,12,16,group3,1,0,0,Kanata Konoe,Konoe Kanata,NA,
 Yuki,Setsuna,8,8,group3,1,0,0,Setsuna Yuki,Yuki Setsuna,Setsu,
-Verde,Emma,2,5,group3,1,0,0,Emma Verde,Verde Emma,NA,
+Verde,Emma,2,5,group3,1,0,0,Emma Verde,Emma Verde,NA,
 Tennoji,Rina,11,13,group3,1,0,0,Rina Tennoji,Tennoji Rina,Rina-ri,
 Mifune,Shioriko,10,5,group3,1,0,0,Shioriko Mifune,Mifune Shioriko,NA,
 Zhong,Lanzhu,2,15,group3,1,0,0,Lanzhu Zhong,Zhong Lanzhu,NA,
@@ -76,7 +76,7 @@ Kusunoki,Tomori,12,22,group3,0,1,0,Tomori Kusunoki,Kusunoki Tomori,Tomoriru,voic
 Hayashi,Coco,5,15,group3,0,1,0,Coco Hayashi,Hayashi Coco,Coco-chan,voices Setsuna
 Murakami,Natsumi,9,7,group3,0,1,0,Natsumi Murakami,Murakami Natsumi,Nacchan,voices Ai
 Homoto,Akina,8,5,group3,0,1,0,Akina Homoto,Homoto Akina,Homin,voices Lanzhu
-Yano,Hinaki,3,5,group3,0,1,0,Hinaki Yano,Yano Hinaki,Hinanon,voices Yu
+Yano,Hinaki,3,5,group3,0,1,0,Hinaki Yano,Yano Hinaki,Hinanon,Hitori dake nante erabenai yooooooo
 Sagara,Mayu,4,17,group3,0,1,0,Mayu Sagara,Sagara Mayu,Mayuchi,voices Kasumi
 Tanaka,Chiemi,10,6,group3,0,1,0,Chiemi Tanaka,Tanaka Chiemi,Chemii,voices Rina
 Maeda,Kaori,4,25,group3,0,1,0,Kaori Maeda,Maeda Kaori,Kaorin,voices Shizuku
@@ -115,15 +115,33 @@ Lindbeck,Erica,5,29,group1,0,0,1,Erica Lindbeck,Erica Lindbeck,Erica L.,voices E
 Vee,Cristina,7,11,group1,0,0,1,Cristina Vee,Cristina Vee,NA,voices Kotori
 Buckland,Kira,7,16,group1,0,0,1,Kira Buckland,Kira Buckland,NA,voices Umi
 Mata,Faye,9,2,group1,0,0,1,Faye Mata,Faye Mata,NA,voices Rin
-Glass,Caitlin,11,16,group1,0,0,1,Caitlin Glass,Caitlin Glass,NA,voices Maki
-Post,Laura,6,23,group1,0,0,1,Laura Post,Laura Post,NA,voices Nozomi
+Glass,Caitlin,11,16,group1,0,0,1,Caitlin Glass,Caitlin Glass,Caitlin G.,voices Maki
+Post,Laura,6,23,group1,0,0,1,Laura Post,Laura Post,Laura P.,voices Nozomi
 Huynh,Xanthe,6,22,group1,0,0,1,Xanthe Huynh,Xanthe Huynh,NA,voices Hanayo
 Saxton,Jad,9,27,group2,0,0,1,Jad Saxton,Jad Saxton,NA,voices Chika
 Tirado,Jeannie,7,19,group2,0,0,1,Jeannie Tirado,Jeannie Tirado,NA,voices Riko
 Rojas,Michelle,12,16,group2,0,0,1,Michelle Rojas,Michelle Rojas,NA,voices Kanan
-Garrett,Morgan,9,4,group2,0,0,1,Morgan Garrett,Morgan Garrett,NA,voices Dia
+Garrett,Morgan,9,4,group2,0,0,1,Morgan Garrett,Morgan Garrett,Morgan G.,voices Dia
 Yu,Apphia,10,9,group2,0,0,1,Apphia Yu,Apphia Yu,NA,voices You
-Berry,Morgan,4,27,group2,0,0,1,Morgan Berry,Morgan Berry,NA,voices Yoshiko
+Berry,Morgan,4,27,group2,0,0,1,Morgan Berry,Morgan Berry,Morgan B.,voices Yoshiko
 Shipman,Megan,3,13,group2,0,0,1,Megan Shipman,Megan Shipman,NA,voices Hanamaru
 Jamie,Marchi,10,8,group2,0,0,1,Marchi Jamie,Marchi Jamie,NA,voices Mari
 Wiedenheft,Sarah,7,3,group2,0,0,1,Sarah Wiedenheft,Sarah Wiedenheft,Sarah W.,voices Ruby
+Yeung,Suzie,6,12,group3,0,0,1,Suzie Yeung,Suzie Yeung,NA,voices Ayumu
+Mills,Kayli,12,10,group3,0,0,1,Kayli Mills,Kayli Mills,NA,voices Kasumi
+Harris,Jill,7,3,group3,0,0,1,Jill Harris,Jill Harris,NA,voices Shizuku
+Kirby,Shara,4,1,group3,0,0,1,Shara Kirby,Shara Kirby,NA,voices Karin
+Guevara,Daisy,12,6,group3,0,0,1,Daisy Guevara,Daisy Guevara,NA,voices Ai
+Seidel,Lindsay,6,15,group3,0,0,1,Lindsay Seidel,Lindsay Seidel,Lindsay Seidel,voices Kanata
+Stahl,Laura,8,12,group3,0,0,1,Laura Stahl,Laura Stahl,Laura S.,voices Setsuna
+Reimold,Lisa,11,6,group3,0,0,1,Lisa Reimold,Lisa Reimold,NA,voices Emma
+Daviau,Hayden,4,25,group3,0,0,1,Hayden Daviau,Hayden Daviau,NA,voices Rina
+Myers,Caitlin,6,11,group3,0,0,1,Caitlin Myers,Caitlin Myers,Caitlin M.,voices Shioriko
+Sheppard,Lindsay,10,20,group3,0,0,1,Lindsay Sheppard,Lindsay Sheppard,Lindsay Sheppard,voices Mia
+Lin,Courtney,12,26,group3,0,0,1,Courtney Lin,Courtney Lin,NA,voices Lanzhu
+Dorroh,Madeline,5,6,group3,0,0,1,Madeline Dorroh,Madeline Dorroh,NA,voices Yu
+Rothrock,Kristi,11,28,group4,0,0,1,Kristi Rothrock,Kristi Rothrock,NA,voices Kanon
+Gu,Julia,10,31,group4,0,0,1,Julia Gu,Julia Gu,NA,voices KeKe
+Matsumoto,Maddie,9,9,group4,0,0,1,Maddie Matsumoto,Maddie Matsumoto,NA,voices Chisato
+Freeman,Lizzie,11,2,group4,0,0,1,Lizzie Freeman,Lizzie Freeman,NA,voices Sumire
+Van Sistine,Natalie,12,21,group4,0,0,1,Natalie Van Sistine,Natalie Van Sistine,NA,voices Ren

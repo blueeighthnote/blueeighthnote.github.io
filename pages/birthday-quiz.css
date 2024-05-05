@@ -102,3 +102,12 @@ footer {
 .social-links a:hover {
   color: #ccc;
 }
+
+.with-separator::after {
+    content: '';
+    display: inline-block;
+    width: 1px; /* Adjust thickness as needed */
+    height: 100%; /* Adjust height as needed */
+    background-color: black; /* Adjust color as needed */
+    margin-left: 5px; /* Adjust spacing as needed */
+  }

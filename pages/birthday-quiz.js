@@ -141,42 +141,50 @@ let is_english_VA_mode = 0;
 
 // Function to filter idols by group
 function filterIdolsByGroup(group) {
-  
-  // Special case Early Return: if selecting EnglishVAs (currently only selecting both non-chara and non-seiyuu)
+ 
+  // Special case if selecting EnglishVAs (currently only selecting both non-chara and non-seiyuu)
+  // "quality coding" - copy & paste
   if (group === 'group1EN'){
 	  is_english_VA_mode = 1;
 	  return idols.filter(idol => (!idol.isCharacter && !idol.isSeiyuu) && idol.group === 'group1');
   } else if (group === 'group2EN'){
 	  is_english_VA_mode = 1;
 	  return idols.filter(idol => (!idol.isCharacter && !idol.isSeiyuu) && idol.group === 'group2');
+  } else if (group === 'group3EN'){
+	  is_english_VA_mode = 1;
+	  return idols.filter(idol => (!idol.isCharacter && !idol.isSeiyuu) && idol.group === 'group3');
+  } else if (group === 'group4EN'){
+	  is_english_VA_mode = 1;
+	  return idols.filter(idol => (!idol.isCharacter && !idol.isSeiyuu) && idol.group === 'group4');
   }
   
   is_english_VA_mode = 0;
-  
-  // begin filters, based on the selected filter type
+ 
+  // begin normal filters, based on the selected filter type
   let filterType = document.querySelector('input[name="filterType"]:checked').value;
   let filteredIdols;
-  
-  if (filterType === 'characters') {
-    filteredIdols = idols.filter(idol => idol.isCharacter);
-  } else if (filterType === 'seiyuus') {
-    filteredIdols = idols.filter(idol => idol.isSeiyuu);
-  } else { // Both
-    filteredIdols = idols.filter(idol => idol.isCharacter || idol.isSeiyuu);
-  }
-  
-  ////// now filter by group
+
+  ////// filter by group
   if (group === 'all') {
-    return filteredIdols;
+    filteredIdols = idols; // remain the same 
   } else if (group === 'group2ss') {
-    // console.log(idols.filter(idol => idol.group === 'group2' || idol.group === 'ss'));
-    return filteredIdols.filter(idol => idol.group === 'group2' || idol.group === 'ss');
+    filteredIdols = idols.filter(idol => idol.group === 'group2' || idol.group === 'ss');
   } else if (group === 'group4sunnypa') {
-    // console.log(idols.filter(idol => idol.group === 'group2' || idol.group === 'ss'));
-    return filteredIdols.filter(idol => idol.group === 'group4' || idol.group === 'sunnypa');
+    filteredIdols = idols.filter(idol => idol.group === 'group4' || idol.group === 'sunnypa');
   } else {
-    return filteredIdols.filter(idol => idol.group === group);
+    filteredIdols = idols.filter(idol => idol.group === group);
   }
+    
+  ////// filter by characters
+  if (filterType === 'characters') {
+    filteredIdols = filteredIdols.filter(idol => idol.isCharacter);
+  } else if (filterType === 'seiyuus') {
+    filteredIdols = filteredIdols.filter(idol => idol.isSeiyuu);
+  } else { // Both
+    filteredIdols = filteredIdols.filter(idol => idol.isCharacter || idol.isSeiyuu);
+  }
+
+  return filteredIdols;
 }
 
 // Display current question and options
@@ -198,7 +206,6 @@ function displayQuestion() {
   }
 
   const type_to_ask = Math.floor(Math.random() * 1);  // bday
-  let size_string = "";
   let idol_day = 0;
   let idol_month = 0;
   let idol_birthday = 0;
@@ -220,7 +227,7 @@ function displayQuestion() {
   // determine how the intervals differ
   const intervals = [1, 1, 2, 2, 3, 4, 5, 6, 7, 10];
 
-  const ask_mode = Math.floor(Math.random() * 2.5) + 0; // high chance 0, lower for 1, 2
+  const ask_mode = Math.floor(Math.random() * 2.5) + 0; // high chance 0, 1, lower for 2
   // console.log(ask_mode);
   if ((monthModeCooldown > 0) && ask_mode == 2){
 	  ask_mode == 1;
@@ -231,6 +238,14 @@ function displayQuestion() {
   if (ask_mode == 0){ // alter days
       
       let interval = intervals[Math.floor(Math.random() * intervals.length)];
+	  
+	  // add a chance to override if it's one of the few idols with changed birthdays
+	  if (currentIdol.firstname === "KeKe" && Math.random() < 0.7){
+		  interval = 10;
+	  } else if (currentIdol.firstname === "Natsumi" && Math.random() < 0.7){
+		  interval = 6;
+	  }
+	  
       let num_options = Math.floor(Math.random() * 3) + 3;   // 3 ~ 5 options
 	  
 	  // expert increases number of options
@@ -414,10 +429,10 @@ function checkAnswer(selectedOption, type_to_ask, correctAnswer) {
     option.disabled = true;
     if (option.textContent === correctAnswer) {
       option.classList.add('correct');
-    } else if (kekeOldBirthdayCase && option.textContent === "July 7" && selectedOption != "July 17") {
-      option.classList.add('premium'); // KeKe case, only display if wrong
-	} else if (oninatsuOldBirthdayCase && option.textContent === "August 13" && selectedOption != "August 7") {
-      option.classList.add('premium'); // Natsumi case, only display if wrong
+    } else if (kekeOldBirthdayCase && option.textContent === "July 7" ) { //&& selectedOption != "July 17") {
+      option.classList.add('premium'); // KeKe case, display yellow on such special case
+	} else if (oninatsuOldBirthdayCase && option.textContent === "August 13") { // && selectedOption != "August 7") {
+      option.classList.add('premium'); // Natsumi case, display yellow on special case
     } else {
       option.classList.add('incorrect');
     }
@@ -429,8 +444,13 @@ function checkAnswer(selectedOption, type_to_ask, correctAnswer) {
   } else if (kekeOldBirthdayCase && selectedOption === "July 7") {  
     resultElement2.textContent = 'Looks like you found KeKe\'s original birthday. Nice one!';
     correctAnswers++;
+  } else if (kekeOldBirthdayCase && (selectedOption === "July 6" || selectedOption === "July 8" || selectedOption === "July 9" )) {  
+    resultElement2.textContent = 'No, the "old birthday" easter egg option doesn\'t always show up in this quiz.';
   } else if (oninatsuOldBirthdayCase && selectedOption === "August 13") {  
     resultElement2.textContent = 'You found Natsumi\'s original birthday before it was changed. ONINATSUUUUUUUUU';
+    correctAnswers++;
+  } else if (oninatsuOldBirthdayCase && (selectedOption === "August 12" || selectedOption === "August 14" || selectedOption === "August 11")) {  
+    resultElement2.textContent = 'Sorry, you have to actually select the correct easter egg date to get a special message. If it doesn\'t appear, too bad.';
     correctAnswers++;
   } else {
     resultElement2.textContent = `Incorrect! The correct answer is ${correctAnswer}.`;
@@ -491,6 +511,7 @@ isSeiyuuSelect.forEach(input => {
   input.addEventListener('change', startNewQuiz);
 
 });
+
 // Event listener for the JP name order toggle
 nameJPOrderSelect.addEventListener('change', () => {
 	// console.log(nameJPOrderSelect.checked);
