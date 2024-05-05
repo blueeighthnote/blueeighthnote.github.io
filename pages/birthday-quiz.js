@@ -101,7 +101,6 @@ const resultElement = document.getElementById('result');
 const resultElement2 = document.getElementById('optionResult');
 const groupSelect = document.getElementById('groupSelect');
 const isSeiyuuSelect = document.querySelectorAll('input[name="filterType"]');
-const seiyuuSelected = document.querySelector('input[name="filterType"]:checked');
 const nameJPOrderSelect = document.getElementById('nameJPorderToggle');
 
 // important globals
@@ -117,7 +116,7 @@ let use_JP_name_order = 0;
 // Function to filter idols by group
 function filterIdolsByGroup(group) {
   // adding the seiyuu filters and stuff here
-  let filterType = seiyuuSelected.value;
+  let filterType = document.querySelector('input[name="filterType"]:checked').value;
   
   // Filter idols based on the selected filter type
   let filteredIdols;
