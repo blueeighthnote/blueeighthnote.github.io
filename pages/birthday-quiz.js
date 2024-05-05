@@ -1,13 +1,16 @@
 // Define the Idol class
 class Idol {
-  constructor(name, name_JP_order, birthMonth, birthDay, group, isCharacter, isSeiyuu) {
+  constructor(name, name_JP_order, nickname, firstname, birthMonth, birthDay, group, isCharacter, isSeiyuu, hint) {
     this.name = name;
 	this.name_JP_order = name_JP_order;
+	this.nickname = nickname;
+	this.firstname = firstname;
     this.birthMonth = birthMonth;
     this.birthDay = birthDay;
     this.group = group;
     this.isCharacter = isCharacter;
     this.isSeiyuu = isSeiyuu;
+	this.hint = hint;
   }
 }
 
@@ -45,7 +48,9 @@ async function initializeGame() {
 	// Create objects
     idols.length = 0; // Clear existing data in the global variable
     objects.forEach(object => {
-      idols.push(new Idol(object.name, object.name_JP_order, parseInt(object.birthMonth), parseInt(object.birthDay), object.group, parseInt(object.isCharacter), parseInt(object.isSeiyuu)));
+      idols.push(new Idol(object.name, object.name_JP_order, object.nickname, object.first_name, 
+	                      parseInt(object.birthMonth), parseInt(object.birthDay), 
+						  object.group, parseInt(object.isCharacter), parseInt(object.isSeiyuu), object.hint));
     });
 	console.log(idols);
 	
@@ -73,13 +78,29 @@ const shuffle = array => {
 function updateQuestionText(query_string){
 	// this is for after adjusting name display order (EN or JP)
 	// admittedly the writing of this code is not clean
-	let idol_name = 0;
-	if (use_JP_name_order){
-		idol_name = filterIdolsByGroup(currentGroup)[currentQuestionIndex].name_JP_order;
+	const current_idol = filterIdolsByGroup(currentGroup)[currentQuestionIndex];
+	
+	// names display
+	let idol_name = "";
+	if (use_nicknames){
+		idol_name = current_idol.nickname;
+		// possibility of NA due to no nickname - use first name instead
+		if (idol_name === "NA"){
+			idol_name = current_idol.firstname;
+		}
+    } else if (use_JP_name_order){
+		idol_name = current_idol.name_JP_order;
 	} else{
-		idol_name = filterIdolsByGroup(currentGroup)[currentQuestionIndex].name;
+		idol_name = current_idol.name;
 	}
-	let question = `When is ${idol_name}'s ${query_string}?`;
+	
+	// hints display
+	let hint_text = "";
+	if (add_hints && current_idol.hint){
+		hint_text = `(Hint: ${current_idol.hint})`;
+	}
+	
+	let question = `What date is ${idol_name}'s ${query_string}? ${hint_text}`;
     questionElement.textContent = question;
 }
 
@@ -102,6 +123,8 @@ const resultElement2 = document.getElementById('optionResult');
 const groupSelect = document.getElementById('groupSelect');
 const isSeiyuuSelect = document.querySelectorAll('input[name="filterType"]');
 const nameJPOrderSelect = document.getElementById('nameJPorderToggle');
+const useNicknamesSelect = document.getElementById('nicknamesToggle');
+const addHintsSelect = document.getElementById('addHintsToggle');
 
 // important globals
 let timeoutId; // for timeout ID events
@@ -112,20 +135,34 @@ let currentGroup = 'all';
 
 // question display related
 let use_JP_name_order = 0;
+let use_nicknames = 0;
+let add_hints = 0;
+let is_english_VA_mode = 0;
 
 // Function to filter idols by group
 function filterIdolsByGroup(group) {
-  // adding the seiyuu filters and stuff here
-  let filterType = document.querySelector('input[name="filterType"]:checked').value;
   
-  // Filter idols based on the selected filter type
+  // Special case Early Return: if selecting EnglishVAs (currently only selecting both non-chara and non-seiyuu)
+  if (group === 'group1EN'){
+	  is_english_VA_mode = 1;
+	  return idols.filter(idol => (!idol.isCharacter && !idol.isSeiyuu) && idol.group === 'group1');
+  } else if (group === 'group2EN'){
+	  is_english_VA_mode = 1;
+	  return idols.filter(idol => (!idol.isCharacter && !idol.isSeiyuu) && idol.group === 'group2');
+  }
+  
+  is_english_VA_mode = 0;
+  
+  // begin filters, based on the selected filter type
+  let filterType = document.querySelector('input[name="filterType"]:checked').value;
   let filteredIdols;
+  
   if (filterType === 'characters') {
-    filteredIdols = idols.filter(idol => !idol.isSeiyuu);
+    filteredIdols = idols.filter(idol => idol.isCharacter);
   } else if (filterType === 'seiyuus') {
     filteredIdols = idols.filter(idol => idol.isSeiyuu);
   } else { // Both
-    filteredIdols = idols;
+    filteredIdols = idols.filter(idol => idol.isCharacter || idol.isSeiyuu);
   }
   
   ////// now filter by group
@@ -145,7 +182,20 @@ function filterIdolsByGroup(group) {
 // Display current question and options
 function displayQuestion() {
   const filteredIdols = filterIdolsByGroup(currentGroup);
-  const currentIdol = filteredIdols[currentQuestionIndex];  
+  const currentIdol = filteredIdols[currentQuestionIndex];
+  
+  // extra handler to disable options to swap character-seiyuu selections when choosing English VAs
+  if (is_english_VA_mode){
+      isSeiyuuSelect.forEach(input => {
+	      input.disabled = true;
+		  nameJPOrderSelect.disabled = true;
+      });
+  } else {
+	  isSeiyuuSelect.forEach(input => {
+	      input.disabled = false;
+		  nameJPOrderSelect.disabled = false || use_nicknames; //?
+      });
+  }
 
   const type_to_ask = Math.floor(Math.random() * 1);  // bday
   let size_string = "";
@@ -171,7 +221,7 @@ function displayQuestion() {
   const intervals = [1, 1, 2, 2, 3, 4, 5, 6, 7, 10];
 
   const ask_mode = Math.floor(Math.random() * 2.5) + 0; // high chance 0, lower for 1, 2
-  console.log(ask_mode);
+  // console.log(ask_mode);
   if ((monthModeCooldown > 0) && ask_mode == 2){
 	  ask_mode == 1;
   } else {
@@ -186,15 +236,13 @@ function displayQuestion() {
 	  // expert increases number of options
 	  // 13+ correct answers guarantee one more options than usual
 	  // 25+ correct answers guarantee two more options than usual
-	  let rng = Math.random();
-	  console.log(`RNG: ${rng}`)
 	  num_options += Math.floor(Math.random() + correctAnswers * 0.08);
 	  
-	  console.log(`Number of options: ${num_options}`);
+	  // console.log(`Number of options: ${num_options}`);
 	  
 	  // overwhelm mode (random)
 	  const overwhelm_chance = 0.05 + correctAnswers * 0.004; // up to 17% for overwhelm mode
-	  if ((Math.random() < overwhelm_chance) && (correctAnswers >= 3) && overwhelmCooldown <= 0){
+	  if ((Math.random() < overwhelm_chance) && (correctAnswers >= 3) && (overwhelmCooldown <= 0)){
 		  num_options += 5 + Math.floor(Math.random() * 4)*3; // + 5,8,11,14
 		  overwhelmCooldown = 2;
 	  }
@@ -240,10 +288,10 @@ function displayQuestion() {
       let intervalM = Math.floor(Math.random() * 5) + 1  // 1 ~ 11 months difference
       let num_optionsM = Math.floor(Math.random() * 2) + 2;   // 2 ~ 3 options
 	  
-	  if ((num_optionsD == 3) && (num_optionsM == 3) && correctAnswers >= 10){ // rare case of 3 options on both - make one lower
+	  if ((num_optionsD == 3) && (num_optionsM == 3) && (correctAnswers <= 10)){ // rare case of 3 options on both - make one lower
 		  num_optionsD = 2;
 	  }
-	  console.log(`Number of options: ${num_optionsD * num_optionsM}`);
+	  //console.log(`Number of options: ${num_optionsD * num_optionsM}`);
 	  
 	  let start_day = idol_day - Math.floor(Math.random() * num_optionsD ) * intervalD;
 	  let start_month = idol_month - Math.floor(Math.random() * num_optionsM ) * intervalM;
@@ -311,7 +359,7 @@ function displayQuestion() {
 		  num_options = Math.floor(Math.random() * 3) + 3;   // standard 3 ~ 5 options
 	  }
 	  
-	  console.log(`Number of options: ${num_options}`);
+	  // console.log(`Number of options: ${num_options}`);
 	  let start_month = idol_month - Math.floor(Math.random() * num_options ) * interval;  // raw values, have to handle under or overflows
 	  
 	  let month_choices = [];
@@ -416,6 +464,7 @@ function showResult() {
 function startNewQuiz() {
   nextButton.textContent = 'PASS';
   shuffle(idols);
+ 
 
   correctAnswers = 0; // Reset correctAnswers for next quiz
   currentQuestionIndex = 0; // Reset currentQuestionIndex for next quiz
@@ -444,11 +493,34 @@ isSeiyuuSelect.forEach(input => {
 });
 // Event listener for the JP name order toggle
 nameJPOrderSelect.addEventListener('change', () => {
-	console.log(nameJPOrderSelect.checked);
+	// console.log(nameJPOrderSelect.checked);
 	if (nameJPOrderSelect.checked){
 		use_JP_name_order = 1;
 	} else {
 	    use_JP_name_order = 0;
+	}
+	updateQuestionText("birthday"); // birthday cuz that's the only thing right now lol
+}); 
+
+// Add event listener to the "Use JP name order" checkbox
+useNicknamesSelect.addEventListener('change',function (){
+	// Disable the "Use JP name order" checkbox if the "Use nicknames" checkbox is checked
+	
+	if (useNicknamesSelect.checked){
+		use_nicknames = 1;
+	} else {
+	    use_nicknames = 0;
+	}
+	updateQuestionText("birthday");
+	nameJPOrderSelect.disabled = this.checked || is_english_VA_mode;
+});
+
+addHintsSelect.addEventListener('change', () => {
+	// console.log(nameJPOrderSelect.checked);
+	if (addHintsSelect.checked){
+		add_hints = 1;
+	} else {
+	    add_hints = 0;
 	}
 	updateQuestionText("birthday"); // birthday cuz that's the only thing right now lol
 }); 

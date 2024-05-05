@@ -1,111 +1,129 @@
-last_name,first_name,birthMonth,birthDay,group,isCharacter,isSeiyuu,isCute,name,name_JP_order,nickname
-Kosaka,Honoka,8,3,group1,1,0,1,Honoka Kosaka,Kosaka Honoka,NA
-Minami,Kotori,9,12,group1,1,0,1,Kotori Minami,Minami Kotori,NA
-Sonoda,Umi,3,15,group1,1,0,1,Umi Sonoda,Sonoda Umi,NA
-Hoshizora,Rin,11,1,group1,1,0,1,Rin Hoshizora,Hoshizora Rin,NA
-Nishikino,Maki,4,19,group1,1,0,1,Maki Nishikino,Nishikino Maki,NA
-Koizumi,Hanayo,1,17,group1,1,0,1,Hanayo Koizumi,Koizumi Hanayo,NA
-Yazawa,Nico,7,22,group1,1,0,1,Nico Yazawa,Yazawa Nico,NA
-Ayase,Eli,10,21,group1,1,0,1,Eli Ayase,Ayase Eli,NA
-Tojo,Nozomi,6,9,group1,1,0,1,Nozomi Tojo,Tojo Nozomi,NA
-Takami,Chika,8,1,group2,1,0,1,Chika Takami,Takami Chika,NA
-Sakurauchi,Riko,9,19,group2,1,0,1,Riko Sakurauchi,Sakurauchi Riko,NA
-Matsuura,Kanan,2,10,group2,1,0,1,Kanan Matsuura,Matsuura Kanan,NA
-Kurosawa,Dia,1,1,group2,1,0,1,Dia Kurosawa,Kurosawa Dia,NA
-Watanabe,You,4,17,group2,1,0,1,You Watanabe,Watanabe You,NA
-Tsushima,Yoshiko,7,13,group2,1,0,1,Yoshiko Tsushima,Tsushima Yoshiko,NA
-Kunikida,Hanamaru,3,4,group2,1,0,1,Hanamaru Kunikida,Kunikida Hanamaru,NA
-Ohara,Mari,6,13,group2,1,0,1,Mari Ohara,Ohara Mari,NA
-Kurosawa,Ruby,9,21,group2,1,0,1,Ruby Kurosawa,Kurosawa Ruby,NA
-Kazuno,Sarah,5,4,ss,1,0,1,Sarah Kazuno,Kazuno Sarah,NA
-Kazuno,Leah,12,12,ss,1,0,1,Leah Kazuno,Kazuno Leah,NA
-Uehara,Ayumu,3,1,group3,1,0,1,Ayumu Uehara,Uehara Ayumu,NA
-Nakasu,Kasumi,1,23,group3,1,0,1,Kasumi Nakasu,Nakasu Kasumi,NA
-Osaka,Shizuku,4,3,group3,1,0,1,Shizuku Osaka,Osaka Shizuku,NA
-Asaka,Karin,6,29,group3,1,0,1,Karin Asaka,Asaka Karin,NA
-Miyashita,Ai,5,30,group3,1,0,1,Ai Miyashita,Miyashita Ai,NA
-Konoe,Kanata,12,16,group3,1,0,1,Kanata Konoe,Konoe Kanata,NA
-Yuki,Setsuna,8,8,group3,1,0,1,Setsuna Yuki,Yuki Setsuna,NA
-Verde,Emma,2,5,group3,1,0,1,Emma Verde,Verde Emma,NA
-Tennoji,Rina,11,13,group3,1,0,1,Rina Tennoji,Tennoji Rina,NA
-Mifune,Shioriko,10,5,group3,1,0,1,Shioriko Mifune,Mifune Shioriko,NA
-Zhong,Lanzhu,2,15,group3,1,0,1,Lanzhu Zhong,Zhong Lanzhu,NA
-Taylor,Mia,12,6,group3,1,0,1,Mia Taylor,Taylor Mia,NA
-Shibuya,Kanon,5,1,group4,1,0,1,Kanon Shibuya,Shibuya Kanon,NA
-Tang,KeKe,7,17,group4,1,0,1,KeKe Tang,Tang KeKe,NA
-Chisato,Arashi,2,25,group4,1,0,1,Arashi Chisato,Chisato Arashi,NA
-Heanna,Sumire,9,28,group4,1,0,1,Sumire Heanna,Heanna Sumire,NA
-Hazuki,Ren,11,24,group4,1,0,1,Ren Hazuki,Hazuki Ren,NA
-Sakurakoji,Kinako,4,10,group4,1,0,1,Kinako Sakurakoji,Sakurakoji Kinako,NA
-Yoneme,Mei,10,29,group4,1,0,1,Mei Yoneme,Yoneme Mei,NA
-Wakana,Shiki,6,17,group4,1,0,1,Shiki Wakana,Wakana Shiki,NA
-Onitsuka,Natsumi,8,7,group4,1,0,1,Natsumi Onitsuka,Onitsuka Natsumi,NA
-Margarete,Wien,1,20,group4,1,0,1,Wien Margarete,Wien Margarete,NA
-Onitsuka,Tomari,12,28,group4,1,0,1,Tomari Onitsuka,Onitsuka Tomari,NA
-Hijirisawa,Yuna,8,11,sunnypa,1,0,1,Yuna Hijirisawa,Hijirisawa Yuna,NA
-Hiiragi,Mao,12,2,sunnypa,1,0,1,Mao Hiiragi,Hiiragi Mao,NA
-Hinoshita,Kaho,5,22,group5,1,0,1,Kaho Hinoshita,Hinoshita Kaho,NA
-Murano,Sayaka,1,13,group5,1,0,1,Sayaka Murano,Murano Sayaka,NA
-Otomune,Kozue,6,15,group5,1,0,1,Kozue Otomune,Otomune Kozue,NA
-Yugiri,Tsuzuri,11,17,group5,1,0,1,Tsuzuri Yugiri,Yugiri Tsuzuri,NA
-Osawa,Rurino,8,31,group5,1,0,1,Rurino Osawa,Osawa Rurino,NA
-Fujishima,Megumi,12,20,group5,1,0,1,Megumi Fujishima,Fujishima Megumi,NA
-Momose,Ginko,10,20,group5,1,0,1,Ginko Momose,Momose Ginko,NA
-Kachimachi,Kosuzu,2,28,group5,1,0,1,Kosuzu Kachimachi,Kachimachi Kosuzu,NA
-Anyoji,Hime,9,24,group5,1,0,1,Hime Anyoji,Anyoji Hime,NA
-Nitta,Emi,12,10,group1,0,1,1,Emi Nitta,Nitta Emi,Emitsun
-Uchida,Aya,7,23,group1,0,1,1,Aya Uchida,Uchida Aya,Ucchi
-Mimori,Suzuko,6,28,group1,0,1,1,Suzuko Mimori,Mimori Suzuko,Mimorin
-Kubo,Yurika,5,19,group1,0,1,1,Yurika Kubo,Kubo Yurika,Shikako
-Iida,Riho,10,26,group1,0,1,1,Riho Iida,Iida Riho,Rippi
-,Pile,5,2,group1,0,1,1,Pile,Pile,Pile
-Tokui,Sora,12,26,group1,0,1,1,Sora Tokui,Tokui Sora,Soramaru
-Kusuda,Aina,2,1,group1,0,1,1,Aina Kusuda,Kusuda Aina,Kussun
-Nanjo,Yoshino,7,12,group1,0,1,1,Yoshino Nanjo,Nanjo Yoshino,Nanjolno
-Inami,Anju,2,7,group2,0,1,1,Anju Inami,Inami Anju,Anchan
-Saito,Shuka,8,16,group2,0,1,1,Shuka Saito,Saito Shuka,Shukashuu
-Aida,Rikako,8,8,group2,0,1,1,Rikako Aida,Aida Rikako,Aida-san / Rikako
-Kobayashi,Aika,10,23,group2,0,1,1,Aika Kobayashi,Kobayashi Aika,Aikyan
-Furihata,Ai,2,19,group2,0,1,1,Ai Furihata,Furihata Ai,Furirin / Aiai
-Takatsuki,Kanako,9,25,group2,0,1,1,Kanako Takatsuki,Takatsuki Kanako,Kin-chan
-Suzuki,Aina,7,23,group2,0,1,1,Aina Suzuki,Suzuki Aina,Ainya
-Suwa,Nanaka,11,2,group2,0,1,1,Nanaka Suwa,Suwa Nanaka,Suwawa
-Komiya,Arisa,2,5,group2,0,1,1,Arisa Komiya,Komiya Arisa,Arisha
-Onishi,Aguri,5,2,group3,0,1,1,Aguri Onishi,Onishi Aguri,Agupon
-Kusunoki,Tomori,12,22,group3,0,1,1,Tomori Kusunoki,Kusunoki Tomori,Tomoriru
-Hayashi,Coco,5,15,group3,0,1,1,Coco Hayashi,Hayashi Coco,Coco-chan
-Murakami,Natsumi,9,7,group3,0,1,1,Natsumi Murakami,Murakami Natsumi,Nacchan
-Homoto,Akina,8,5,group3,0,1,1,Akina Homoto,Homoto Akina,Homin
-Yano,Hinaki,3,5,group3,0,1,1,Hinaki Yano,Yano Hinaki,Hinanon
-Sagara,Mayu,4,17,group3,0,1,1,Mayu Sagara,Sagara Mayu,Mayuchi
-Tanaka,Chiemi,10,6,group3,0,1,1,Chiemi Tanaka,Tanaka Chiemi,Chemii
-Maeda,Kaori,4,25,group3,0,1,1,Kaori Maeda,Maeda Kaori,Kaorin
-Uchida,Shu,5,24,group3,0,1,1,Shu Uchida,Uchida Shu,Shu-chan
-Kito,Akari,10,16,group3,0,1,1,Akari Kito,Kito Akari,Akarin
-Kubota,Miyu,1,31,group3,0,1,1,Miyu Kubota,Kubota Miyu,Miyutan
-Sashide,Maria,9,20,group3,0,1,1,Maria Sashide,Sashide Maria,Chunrun
-Koizumi,Moeka,2,27,group3,0,1,1,Moeka Koizumi,Koizumi Moeka,Moepi
-Date,Sayuri,9,30,group4,0,1,1,Sayuri Date,Date Sayuri,Sayurin
-,Liyuu,1,9,group4,0,1,1,Liyuu,Liyuu,Liyuu
-Misaki,Nako,3,8,group4,0,1,1,Nako Misaki,Misaki Nako,Nakonako
-Payton,Naomi,7,1,group4,0,1,1,Naomi Payton,Payton Naomi,Pay-chan
-Aoyama,Nagisa,5,16,group4,0,1,1,Nagisa Aoyama,Aoyama Nagisa,Nagi-chan
-Suzuhara,Nozomi,11,1,group4,0,1,1,Nozomi Suzuhara,Suzuhara Nozomi,Non-chan
-Yabushima,Akane,7,18,group4,0,1,1,Akane Yabushima,Yabushima Akane,Yabu-chan
-Ookuma,Wakana,4,13,group4,0,1,1,Wakana Ookuma,Ookuma Wakana,Kuma-chan
-Emori,Aya,2,23,group4,0,1,1,Aya Emori,Emori Aya,Emorin
-Sakakura,Sakura,4,3,group4,0,1,1,Sakura Sakakura,Sakakura Sakura,Saku-chan
-,Yuina,9,27,group4,0,1,1,Yuina,Yuina,Yuina
-Nirei,Nozomi,5,21,group5,0,1,1,Nozomi Nirei,Nirei Nozomi,Nonsuke
-Nonaka,Kakona,1,28,group5,0,1,1,Kakona Nonaka,Nonaka Kakona,Nassu-chan
-Hanamiya,Nina,10,24,group5,0,1,1,Nina Hanamiya,Hanamiya Nina,Ui-chan
-Kotoko,Sasaki,8,28,group5,0,1,1,Sasaki Kotoko,Kotoko Sasaki,Kocchan
-Kanna,Kan,11,19,group5,0,1,1,Kan Kanna,Kanna Kan,Kankan
-Tsukine,Kona,8,20,group5,0,1,1,Kona Tsukine,Tsukine Kona,Konachi
-Sakurai,Hina,9,17,group5,0,1,1,Hina Sakurai,Sakurai Hina,Hiichan
-Hayama,Fuka,1,28,group5,0,1,1,Fuka Hayama,Hayama Fuka,Fuuchan
-Kurusu,Rin,11,8,group5,0,1,1,Rin Kurusu,Kurusu Rin,Rin-chan / Rinrin
-Sato,Hina,12,23,ss,0,1,1,Hina Sato,Sato Hina,Hinahina
-Tano,Asami,2,12,ss,0,1,1,Asami Tano,Tano Asami,Asamin
-Yoshitake,Chihaya,3,28,sunnypa,0,1,1,Chihaya Yoshitake,Yoshitake Chihaya,Chiha-chan
-Yuki,Yuna,6,9,sunnypa,0,1,1,Yuna Yuki,Yuki Yuna,Yunana
+﻿last_name,first_name,birthMonth,birthDay,group,isCharacter,isSeiyuu,isEnglishVA,name,name_JP_order,nickname,hint
+Kosaka,Honoka,8,3,group1,1,0,0,Honoka Kosaka,Kosaka Honoka,NA,
+Minami,Kotori,9,12,group1,1,0,0,Kotori Minami,Minami Kotori,NA,
+Sonoda,Umi,3,15,group1,1,0,0,Umi Sonoda,Sonoda Umi,NA,
+Hoshizora,Rin,11,1,group1,1,0,0,Rin Hoshizora,Hoshizora Rin,NA,
+Nishikino,Maki,4,19,group1,1,0,0,Maki Nishikino,Nishikino Maki,NA,
+Koizumi,Hanayo,1,17,group1,1,0,0,Hanayo Koizumi,Koizumi Hanayo,Kayo-chin,
+Yazawa,Nico,7,22,group1,1,0,0,Nico Yazawa,Yazawa Nico,Nico Nii,
+Ayase,Eli,10,21,group1,1,0,0,Eli Ayase,Ayase Eli,Eli-chi,
+Tojo,Nozomi,6,9,group1,1,0,0,Nozomi Tojo,Tojo Nozomi,NA,
+Takami,Chika,8,1,group2,1,0,0,Chika Takami,Takami Chika,NA,
+Sakurauchi,Riko,9,19,group2,1,0,0,Riko Sakurauchi,Sakurauchi Riko,NA,
+Matsuura,Kanan,2,10,group2,1,0,0,Kanan Matsuura,Matsuura Kanan,NA,
+Kurosawa,Dia,1,1,group2,1,0,0,Dia Kurosawa,Kurosawa Dia,NA,
+Watanabe,You,4,17,group2,1,0,0,You Watanabe,Watanabe You,NA,
+Tsushima,Yoshiko,7,13,group2,1,0,0,Yoshiko Tsushima,Tsushima Yoshiko,Yohane,
+Kunikida,Hanamaru,3,4,group2,1,0,0,Hanamaru Kunikida,Kunikida Hanamaru,Zuramaru,
+Ohara,Mari,6,13,group2,1,0,0,Mari Ohara,Ohara Mari,NA,
+Kurosawa,Ruby,9,21,group2,1,0,0,Ruby Kurosawa,Kurosawa Ruby,NA,
+Kazuno,Sarah,5,4,ss,1,0,0,Sarah Kazuno,Kazuno Sarah,NA,
+Kazuno,Leah,12,12,ss,1,0,0,Leah Kazuno,Kazuno Leah,NA,
+Uehara,Ayumu,3,1,group3,1,0,0,Ayumu Uehara,Uehara Ayumu,NA,
+Nakasu,Kasumi,1,23,group3,1,0,0,Kasumi Nakasu,Nakasu Kasumi,Kasukas- I mean Kasumin,
+Osaka,Shizuku,4,3,group3,1,0,0,Shizuku Osaka,Osaka Shizuku,NA,
+Asaka,Karin,6,29,group3,1,0,0,Karin Asaka,Asaka Karin,NA,
+Miyashita,Ai,5,30,group3,1,0,0,Ai Miyashita,Miyashita Ai,NA,
+Konoe,Kanata,12,16,group3,1,0,0,Kanata Konoe,Konoe Kanata,NA,
+Yuki,Setsuna,8,8,group3,1,0,0,Setsuna Yuki,Yuki Setsuna,Setsu,
+Verde,Emma,2,5,group3,1,0,0,Emma Verde,Verde Emma,NA,
+Tennoji,Rina,11,13,group3,1,0,0,Rina Tennoji,Tennoji Rina,Rina-ri,
+Mifune,Shioriko,10,5,group3,1,0,0,Shioriko Mifune,Mifune Shioriko,NA,
+Zhong,Lanzhu,2,15,group3,1,0,0,Lanzhu Zhong,Zhong Lanzhu,NA,
+Taylor,Mia,12,6,group3,1,0,0,Mia Taylor,Mia Taylor,NA,
+Shibuya,Kanon,5,1,group4,1,0,0,Kanon Shibuya,Shibuya Kanon,NA,
+Tang,KeKe,7,17,group4,1,0,0,KeKe Tang,Tang KeKe,NA,
+Chisato,Arashi,2,25,group4,1,0,0,Arashi Chisato,Chisato Arashi,NA,
+Heanna,Sumire,9,28,group4,1,0,0,Sumire Heanna,Heanna Sumire,NA,
+Hazuki,Ren,11,24,group4,1,0,0,Ren Hazuki,Hazuki Ren,NA,
+Sakurakoji,Kinako,4,10,group4,1,0,0,Kinako Sakurakoji,Sakurakoji Kinako,NA,
+Yoneme,Mei,10,29,group4,1,0,0,Mei Yoneme,Yoneme Mei,NA,
+Wakana,Shiki,6,17,group4,1,0,0,Shiki Wakana,Wakana Shiki,NA,
+Onitsuka,Natsumi,8,7,group4,1,0,0,Natsumi Onitsuka,Onitsuka Natsumi,OniNatsu,
+Margarete,Wien,1,20,group4,1,0,0,Wien Margarete,Wien Margarete,Margarete,
+Onitsuka,Tomari,12,28,group4,1,0,0,Tomari Onitsuka,Onitsuka Tomari,NA,
+Hijirisawa,Yuna,8,11,sunnypa,1,0,0,Yuna Hijirisawa,Hijirisawa Yuna,NA,
+Hiiragi,Mao,12,2,sunnypa,1,0,0,Mao Hiiragi,Hiiragi Mao,NA,
+Hinoshita,Kaho,5,22,group5,1,0,0,Kaho Hinoshita,Hinoshita Kaho,NA,
+Murano,Sayaka,1,13,group5,1,0,0,Sayaka Murano,Murano Sayaka,Saya,
+Otomune,Kozue,6,15,group5,1,0,0,Kozue Otomune,Otomune Kozue,NA,
+Yugiri,Tsuzuri,11,17,group5,1,0,0,Tsuzuri Yugiri,Yugiri Tsuzuri,NA,
+Osawa,Rurino,8,31,group5,1,0,0,Rurino Osawa,Osawa Rurino,NA,
+Fujishima,Megumi,12,20,group5,1,0,0,Megumi Fujishima,Fujishima Megumi,Megu,
+Momose,Ginko,10,20,group5,1,0,0,Ginko Momose,Momose Ginko,NA,
+Kachimachi,Kosuzu,2,28,group5,1,0,0,Kosuzu Kachimachi,Kachimachi Kosuzu,NA,
+Anyoji,Hime,9,24,group5,1,0,0,Hime Anyoji,Anyoji Hime,NA,
+Nitta,Emi,12,10,group1,0,1,0,Emi Nitta,Nitta Emi,Emitsun,voices Honoka
+Uchida,Aya,7,23,group1,0,1,0,Aya Uchida,Uchida Aya,Ucchi,voices Kotori
+Mimori,Suzuko,6,28,group1,0,1,0,Suzuko Mimori,Mimori Suzuko,Mimorin,voices Umi
+Kubo,Yurika,5,19,group1,0,1,0,Yurika Kubo,Kubo Yurika,Shikako,voices Hanayo
+Iida,Riho,10,26,group1,0,1,0,Riho Iida,Iida Riho,Rippi,voices Rin
+,Pile,5,2,group1,0,1,0,Pile,Pile,Pile,voices Maki
+Tokui,Sora,12,26,group1,0,1,0,Sora Tokui,Tokui Sora,Soramaru,voices Nico
+Kusuda,Aina,2,1,group1,0,1,0,Aina Kusuda,Kusuda Aina,Kussun,voices Nozomi
+Nanjo,Yoshino,7,12,group1,0,1,0,Yoshino Nanjo,Nanjo Yoshino,Nanjolno,voices Eli
+Inami,Anju,2,7,group2,0,1,0,Anju Inami,Inami Anju,Anchan,voices Chika
+Saito,Shuka,8,16,group2,0,1,0,Shuka Saito,Saito Shuka,Shukashuu,voices You
+Aida,Rikako,8,8,group2,0,1,0,Rikako Aida,Aida Rikako,Aida-san / Rikyako,voices Riko
+Kobayashi,Aika,10,23,group2,0,1,0,Aika Kobayashi,Kobayashi Aika,Aikyan,voices Yoshiko
+Furihata,Ai,2,19,group2,0,1,0,Ai Furihata,Furihata Ai,Furirin / Aiai,voices Ruby
+Takatsuki,Kanako,9,25,group2,0,1,0,Kanako Takatsuki,Takatsuki Kanako,King / Kinchan,voices Hanamaru
+Suzuki,Aina,7,23,group2,0,1,0,Aina Suzuki,Suzuki Aina,Ainya,voices Mari
+Suwa,Nanaka,11,2,group2,0,1,0,Nanaka Suwa,Suwa Nanaka,Suwawa,voices Kanan
+Komiya,Arisa,2,5,group2,0,1,0,Arisa Komiya,Komiya Arisa,Arisha,voices Dia
+Onishi,Aguri,5,2,group3,0,1,0,Aguri Onishi,Onishi Aguri,Agupon,voices Ayumu
+Kusunoki,Tomori,12,22,group3,0,1,0,Tomori Kusunoki,Kusunoki Tomori,Tomoriru,voiced Setsuna
+Hayashi,Coco,5,15,group3,0,1,0,Coco Hayashi,Hayashi Coco,Coco-chan,voices Setsuna
+Murakami,Natsumi,9,7,group3,0,1,0,Natsumi Murakami,Murakami Natsumi,Nacchan,voices Ai
+Homoto,Akina,8,5,group3,0,1,0,Akina Homoto,Homoto Akina,Homin,voices Lanzhu
+Yano,Hinaki,3,5,group3,0,1,0,Hinaki Yano,Yano Hinaki,Hinanon,voices Yu
+Sagara,Mayu,4,17,group3,0,1,0,Mayu Sagara,Sagara Mayu,Mayuchi,voices Kasumi
+Tanaka,Chiemi,10,6,group3,0,1,0,Chiemi Tanaka,Tanaka Chiemi,Chemii,voices Rina
+Maeda,Kaori,4,25,group3,0,1,0,Kaori Maeda,Maeda Kaori,Kaorin,voices Shizuku
+Uchida,Shu,5,24,group3,0,1,0,Shu Uchida,Uchida Shu,Shu-chan,voices Mia
+Kito,Akari,10,16,group3,0,1,0,Akari Kito,Kito Akari,Akarin,voices Kanata
+Kubota,Miyu,1,31,group3,0,1,0,Miyu Kubota,Kubota Miyu,Miyutan,voices Karin
+Sashide,Maria,9,20,group3,0,1,0,Maria Sashide,Sashide Maria,Chunrun,voices Emma
+Koizumi,Moeka,2,27,group3,0,1,0,Moeka Koizumi,Koizumi Moeka,Moepi,voices Shioriko
+Date,Sayuri,9,30,group4,0,1,0,Sayuri Date,Date Sayuri,Sayurin,voices Kanon
+,Liyuu,1,9,group4,0,1,0,Liyuu,Liyuu,Liyuu,voices KeKe
+Misaki,Nako,3,8,group4,0,1,0,Nako Misaki,Misaki Nako,Nakonako,voices Chisato
+Payton,Naomi,7,1,group4,0,1,0,Naomi Payton,Payton Naomi,Pay-chan,voices Sumire
+Aoyama,Nagisa,5,16,group4,0,1,0,Nagisa Aoyama,Aoyama Nagisa,Nagi-chan,voices Ren
+Suzuhara,Nozomi,11,1,group4,0,1,0,Nozomi Suzuhara,Suzuhara Nozomi,Non-chan,voices Kinako
+Yabushima,Akane,7,18,group4,0,1,0,Akane Yabushima,Yabushima Akane,Yabu-chan,voices Mei
+Ookuma,Wakana,4,13,group4,0,1,0,Wakana Ookuma,Ookuma Wakana,Kuma-chan,voices Shiki
+Emori,Aya,2,23,group4,0,1,0,Aya Emori,Emori Aya,Emorin,voices Natsumi
+Sakakura,Sakura,4,3,group4,0,1,0,Sakura Sakakura,Sakakura Sakura,Saku-chan,voices Tomari
+,Yuina,9,27,group4,0,1,0,Yuina,Yuina,Yuina,voices Margarete
+Nirei,Nozomi,5,21,group5,0,1,0,Nozomi Nirei,Nirei Nozomi,Nonsuke,voices Kaho
+Nonaka,Kokona,1,28,group5,0,1,0,Kokona Nonaka,Nonaka Kokona,Nassu-chan,voices Sayaka
+Hanamiya,Nina,10,24,group5,0,1,0,Nina Hanamiya,Hanamiya Nina,Ui-chan,voices Kozue
+Kotoko,Sasaki,8,28,group5,0,1,0,Sasaki Kotoko,Kotoko Sasaki,Kocchan,voices Tsuzuri
+Kanna,Kan,11,19,group5,0,1,0,Kan Kanna,Kanna Kan,Kankan,voices Rurino
+Tsukine,Kona,8,20,group5,0,1,0,Kona Tsukine,Tsukine Kona,Konachi,voices Megumi
+Sakurai,Hina,9,17,group5,0,1,0,Hina Sakurai,Sakurai Hina,Hiichan,voices Ginko
+Hayama,Fuka,1,28,group5,0,1,0,Fuka Hayama,Hayama Fuka,Fuuchan,voices Kosuzu
+Kurusu,Rin,11,8,group5,0,1,0,Rin Kurusu,Kurusu Rin,Rin-chan / Rinrin,voices Hime
+Mendez,Erica,2,13,group1,0,0,1,Erica Mendez,Erica Mendez,Erica M.,voices Nico
+Sato,Hina,12,23,ss,0,1,0,Hina Sato,Sato Hina,Hinahina,voices Leah
+Tano,Asami,2,12,ss,0,1,0,Asami Tano,Tano Asami,Asamin,voices Sarah
+Yoshitake,Chihaya,3,28,sunnypa,0,1,0,Chihaya Yoshitake,Yoshitake Chihaya,Chiha-chan,voices Yuna
+Yuki,Yuna,6,9,sunnypa,0,1,0,Yuna Yuki,Yuki Yuna,Yunana,voices Mao
+Herington,Marieve,2,22,group1,0,0,1,Marieve Herington,Marieve Herington,NA,voices Honoka
+Lindbeck,Erica,5,29,group1,0,0,1,Erica Lindbeck,Erica Lindbeck,Erica L.,voices Eli
+Vee,Cristina,7,11,group1,0,0,1,Cristina Vee,Cristina Vee,NA,voices Kotori
+Buckland,Kira,7,16,group1,0,0,1,Kira Buckland,Kira Buckland,NA,voices Umi
+Mata,Faye,9,2,group1,0,0,1,Faye Mata,Faye Mata,NA,voices Rin
+Glass,Caitlin,11,16,group1,0,0,1,Caitlin Glass,Caitlin Glass,NA,voices Maki
+Post,Laura,6,23,group1,0,0,1,Laura Post,Laura Post,NA,voices Nozomi
+Huynh,Xanthe,6,22,group1,0,0,1,Xanthe Huynh,Xanthe Huynh,NA,voices Hanayo
+Saxton,Jad,9,27,group2,0,0,1,Jad Saxton,Jad Saxton,NA,voices Chika
+Tirado,Jeannie,7,19,group2,0,0,1,Jeannie Tirado,Jeannie Tirado,NA,voices Riko
+Rojas,Michelle,12,16,group2,0,0,1,Michelle Rojas,Michelle Rojas,NA,voices Kanan
+Garrett,Morgan,9,4,group2,0,0,1,Morgan Garrett,Morgan Garrett,NA,voices Dia
+Yu,Apphia,10,9,group2,0,0,1,Apphia Yu,Apphia Yu,NA,voices You
+Berry,Morgan,4,27,group2,0,0,1,Morgan Berry,Morgan Berry,NA,voices Yoshiko
+Shipman,Megan,3,13,group2,0,0,1,Megan Shipman,Megan Shipman,NA,voices Hanamaru
+Jamie,Marchi,10,8,group2,0,0,1,Marchi Jamie,Marchi Jamie,NA,voices Mari
+Wiedenheft,Sarah,7,3,group2,0,0,1,Sarah Wiedenheft,Sarah Wiedenheft,Sarah W.,voices Ruby

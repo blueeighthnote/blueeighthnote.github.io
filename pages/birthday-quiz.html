@@ -16,6 +16,7 @@
       <label for="groupSelect">Select Group:</label>
       <select id="groupSelect">
         <option value="all">All Groups</option>
+		<option disabled="true">&mdash;&mdash;</option>
         <option value="group1">µ's</option>
         <option value="group2">Aqours</option>
         <option value="group2ss">Aqours + Saint Snow</option>
@@ -23,6 +24,9 @@
         <option value="group4">Liella!</option>
         <option value="group4sunnypa">Liella! + Sunny Passion</option>
         <option value="group5">Hasunosora</option>
+		<option disabled="true">&mdash;&mdash;</option>
+        <option value="group1EN">Experimental: µ's English VAs</option>
+        <option value="group2EN">Experimental: Aqours English VAs</option>
       </select>
 	  <br/><br/>
 		<label>Category Options:</label>
@@ -40,7 +44,13 @@
 		<br/>
 		<label>Additional Options:</label>
 		<label>
-		  <input type="checkbox" id="nameJPorderToggle"> Use JP name order
+		  <input type="checkbox" id="nicknamesToggle"> Use First Name / Nicknames
+		</label>
+		<label>
+		  <input type="checkbox" id="nameJPorderToggle"> Use Japanese name order
+		</label>
+		<label>
+		  <input type="checkbox" id="addHintsToggle"> Add Seiyuu Hints
 		</label>
     </div>
     <br/>
@@ -49,12 +59,13 @@
     <br/>
     <div id="result"></div>
   </div>
-
+  
   <script src="birthday-quiz.js"></script>
 </body>
 <footer>
   <div class="footer-content">
-    <p>Silly game made by BlueEighthNote</p>
+    <p>Silly game made by BlueEighthNote<br/>
+	   <small>(Birthday data sources: <a href="https://www.animenewsnetwork.com/" style="color: #FFFFFF">Anime News Network</a>, <a href="https://love-live.fandom.com" style="color: #FFFFFF"</a> Love Live Wiki</a>, <a href="https://en.wikipedia.org/wiki/Main_Page" style="color: #FFFFFF"> Wikipedia</a>, <a href="https://www.imdb.com/" style="color: #FFFFFF">IMDb</a>)</small></p>
     <nav>
       <ul>
         <li><a href="../index.html">Home</a></li>
