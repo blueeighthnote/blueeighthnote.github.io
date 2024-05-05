@@ -170,10 +170,12 @@ function displayQuestion() {
   // determine how the intervals differ
   const intervals = [1, 2, 3, 4, 5, 7, 10];
 
-  const ask_mode = 1 //Math.floor(Math.random() * 2.5) + 0; // high chance 0, lower for 1, 2
-  
+  const ask_mode = Math.floor(Math.random() * 2.5) + 0; // high chance 0, lower for 1, 2
+  console.log(ask_mode);
   if ((monthModeCooldown > 0) && ask_mode == 2){
 	  ask_mode == 1;
+  } else {
+	  monthModeCooldown = Math.max(0, monthModeCooldown - 1);
   }
 
   if (ask_mode == 0){ // alter days
@@ -184,7 +186,11 @@ function displayQuestion() {
 	  // expert increases number of options
 	  // 13+ correct answers guarantee one more options than usual
 	  // 25+ correct answers guarantee two more options than usual
+	  let rng = Math.random();
+	  console.log(`RNG: ${rng}`)
 	  num_options += Math.floor(Math.random() + correctAnswers * 0.08);
+	  
+	  console.log(`Number of options: ${num_options}`);
 	  
 	  // overwhelm mode (random)
 	  const overwhelm_chance = 0.05 + correctAnswers * 0.004; // up to 17% for overwhelm mode
@@ -230,13 +236,14 @@ function displayQuestion() {
       //console.log(options);
   } else if (ask_mode == 1){ // alter BOTH days and months
       let intervalD = intervals[Math.floor(Math.random() * intervals.length)] + 6;  // 6, 7, 8, 9, 10, 12, 15
-      let num_optionsD = Math.floor(Math.random() * 1) + 2;   // 1 ~ 3 options
+      let num_optionsD = Math.floor(Math.random() * 2) + 2;   // 2 ~ 3 options
       let intervalM = Math.floor(Math.random() * 5) + 1  // 1 ~ 11 months difference
-      let num_optionsM = Math.floor(Math.random() * 1) + 2;   // 1 ~ 3 options
+      let num_optionsM = Math.floor(Math.random() * 2) + 2;   // 2 ~ 3 options
 	  
 	  if ((num_optionsD == 3) && (num_optionsM == 3) && correctAnswers >= 10){ // rare case of 3 options on both - make one lower
 		  num_optionsD = 2;
 	  }
+	  console.log(`Number of options: ${num_optionsD * num_optionsM}`);
 	  
 	  let start_day = idol_day - Math.floor(Math.random() * num_optionsD ) * intervalD;
 	  let start_month = idol_month - Math.floor(Math.random() * num_optionsM ) * intervalM;
@@ -303,6 +310,8 @@ function displayQuestion() {
 	  } else {
 		  num_options = Math.floor(Math.random() * 3) + 3;   // standard 3 ~ 5 options
 	  }
+	  
+	  console.log(`Number of options: ${num_options}`);
 	  let start_month = idol_month - Math.floor(Math.random() * num_options ) * interval;  // raw values, have to handle under or overflows
 	  
 	  let month_choices = [];
